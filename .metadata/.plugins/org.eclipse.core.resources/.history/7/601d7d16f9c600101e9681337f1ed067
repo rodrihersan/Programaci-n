@@ -1,0 +1,85 @@
+package Condicionales;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Ejercicios_1_5 {
+
+	public static void main(String[] args) throws IOException {
+			BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+		// TODO Auto-generated method stub
+			//1. Escribe un programa que pida dos números e indique si el primero es mayor que el
+			//segundo. Si el primero es mayor mostrará por pantalla "El primero es mayor", en caso
+			//contrario, "El primero no es mayor que el segundo"
+			int numero1;
+			int numero2;
+			
+			numero1 = Integer.parseInt(lector.readLine());
+			numero2 = Integer.parseInt(lector.readLine());
+			
+			if(numero1 > numero2)
+				System.out.println("Numero 1 es mayor");
+			else if(numero2 > numero1) {
+				System.out.println("Numero 2 es mayor");	
+			}else {
+				System.out.println("Son iguales");
+			}
+			
+			//2. Escribe un programa que pida un numero y muestre por pantalla si es positivo, 
+			//negativo o 0.
+			System.out.print("Dame un numero y te digo si es positivo, negativo o 0: ");
+			int numero3;
+			numero3 = Integer.parseInt(lector.readLine());
+			
+			if(numero3 > 0)
+				System.out.println("Es positivo");
+			else if (numero3 == 0) {
+				System.out.println("El numero es 0 :)");
+			}else {
+				System.out.println("El numero es negativo");
+			}
+			
+			
+			//3. Escribe un programa que lea un número e indique si es par o impar
+			
+			System.out.print("Dame un numero y te digo si es par o impar: ");
+			int numero4;
+			numero4 = Integer.parseInt(lector.readLine());
+			
+			if(numero4 % 2 == 0) {
+				System.out.println("El numero " + numero4 + " es par");
+			}else {
+				System.out.println("El numero " + numero4 + " es impar");}
+			
+			//4.Crea un programa que pida al usuario dos números y muestre su división. 
+			//Si el segundo numero es 0, en lugar de realizar la división, muestra un 
+			//mensaje de error.
+			
+			System.out.println("Dame dos numeros y te muestro su division: ");
+			int numero5;
+			int numero6;
+			numero5 = Integer.parseInt(lector.readLine());
+			numero6 = Integer.parseInt(lector.readLine());
+			int division = numero5 / numero6;
+			
+			if(numero6 == 0) {
+				System.out.print("¡ERROR!");
+			}else {
+				System.out.println(division);}
+			
+			//5. Escribe un programa que pida un nombre de usuario y una contraseña y 
+			//si se ha introducido "alumno" y "daw1programacion" se indica "Has entrado al sistema", 
+			//sino se da un error.
+			
+			System.out.println("Dame tu nombre de usuario: ");
+			String usuario = lector.readLine();
+			System.out.println("Dame una contraseña: ");
+			String contra = lector.readLine();
+
+			if(usuario.equals("alumno") && contra.equals("daw1programacion")) {
+				System.out.println("Has entrado al sistema");}
+				else {
+					System.out.println("¡ERROR!");}	
+		}
+	}

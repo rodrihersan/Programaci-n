@@ -1,0 +1,468 @@
+package HernandezSanchezRodrigo_Trabajo;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class HernandezSanchezRodrigo_Trabajo {
+
+	public static void main(String[] args) throws IOException {
+		
+		boolean salir = false;
+		do {
+			System.out.println("=== BIBLIOTECA Calasanz Games ===");
+			System.out.println("----------------------------------");
+			System.out.println();
+			System.out.println("--- MENÚ PRINCIPAL ---");
+			System.out.println("1. Gestión de Usuarios");
+			System.out.println("2. Catálogo de Juegos");
+			System.out.println("3. Sistema de Valoraciones");
+			System.out.println("4. Estadísticas y Reportes");
+			System.out.println("5. Calculadora de Descuentos");
+			System.out.println("6. Salir");
+			System.out.print("Elige una opción: ");
+			int opcion = leerInt();
+
+			switch (opcion) {			
+				case 1:gestiónUsuario();break;
+				case 2:catalogoDeJuegos();break;
+				case 3:sistemaDeValoraciones();break;
+				case 4:estadísticasYReportes();break;
+				case 5:calculadoraDeDescuentos();break;
+				case 6:salir = true;
+				System.out.println("Saliendo de BIBLIOTECA Calasanz Games");break;
+				default:System.err.println("Opción no válida");	
+			}
+		} while (!salir);
+	}
+
+//Lectores/validacion
+	public static int leerInt() throws IOException {
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		int num = 0;
+		boolean valido = false;
+		while (!valido) {
+			try {
+				num = Integer.parseInt(leer.readLine());
+				valido = true;
+			} catch (NumberFormatException e) {
+				System.err.print("ERROR. ");
+				System.out.println("Introduce un número válido: ");
+			}
+		}
+		return num;
+	}
+	
+	public static int leerIntPositivo() throws IOException {
+	    int numero = leerInt();
+	    while (numero < 0) {
+	        System.err.print("ERROR. ");
+	        System.out.println("El número no puede ser negativo. Intentalo de nuevo: ");
+	        numero = leerInt();
+	    }
+	    return numero;
+	}
+	
+	public static double leerDouble() throws IOException{
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		double numero =0;
+		boolean valido=false;
+		
+		while(!valido) {
+			try {
+				numero = Double.parseDouble(leer.readLine());
+	            valido = true;
+	        } catch (NumberFormatException e) {
+	            System.err.print("ERROR. ");
+	            System.out.println("Introduce un número válido");
+	        }
+	    }
+	    return numero;
+		}
+	
+	public static double leerDoublePositivo() throws IOException {
+        double numero = leerDouble();
+        while (numero < 0) {
+        	System.err.print("No puedes introducir un número negativo.");
+        	System.out.println(" Intentalo de nuevo: ");
+            numero = leerDouble();
+        }
+        return numero;
+    }
+	
+	public static String leerLinea() throws IOException {
+	    BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+	    String texto = leer.readLine();
+	    
+	    while (texto.length() == 0) {
+	            System.err.println("Debes escribir algo.");
+	            System.out.print("Inténtalo de nuevo: ");
+	            texto = leer.readLine();
+	        }
+	    return texto;
+	}
+	
+//Método para leer un número en un rango
+	public static int pedirNumeroEnRango(String mensaje, int min, int max) throws IOException {
+		int numero;
+		do {
+			System.out.print(mensaje);
+			numero = leerInt();
+			if (numero < min || numero > max) {
+				System.err.print("ERROR. ");
+				System.out.print("El número debe estar entre " + min + " y " + max + ".");
+			}
+		} while (numero < min || numero > max);
+		return numero;
+	}
+
+//calculamos edad con métodos
+		public static int calcularEdad(int año) {
+			return 2025 - año;
+		}
+		
+//Gestión usuario(1)
+	public static void gestiónUsuario() throws NumberFormatException, IOException {
+		boolean volver = false;
+		do {
+			System.out.println("Opcion 1: --- GESTIÓN DE USUARIOS ---");
+			System.out.println();
+			System.out.println("1. Crear nuevo usuario");
+			System.out.println("2. Calcular edad del usuario");
+			System.out.println("3. Volver al menú principal");
+			System.out.print("Elige una opción: ");
+			int opcion = leerInt();
+
+			switch (opcion) {
+			
+			case 1:crearUsuario();break;
+			case 2:calcularEdadUsuario();break;
+			case 3:volver = true;break;
+			default:System.err.println("Opción incorrecta");				
+			}
+			System.out.println();
+		} while (!volver);
+	}
+
+//crearUsuario(1.1)
+	
+//Validación del nombre(1.1.1)
+	public static void crearUsuario() throws NumberFormatException, IOException {
+		String nombre;
+		boolean nombreValido = false;
+		do {
+			System.out.print("Introduce nombre del usuario: ");
+			nombre = leerLinea();	
+			if (nombre.length() < 3) {
+				System.err.println("Error: El nombre debe tener al menos 3 carácteres.");
+			}else{
+				nombreValido = true;
+			}
+		}while(!nombreValido);
+		
+//Validación del año(1.1.2)
+		int año = pedirNumeroEnRango("Introduce tu año de nacimiento: ", 1920, 2025);
+		
+//validacion plataforma(1.1.3)
+		boolean plataformaFavorita = false;
+		System.out.print("Introduce tu plataforma favorita (PC, PlayStation, Xbox, Nintendo): ");
+		String plataforma = leerLinea();
+		do {
+			if (plataforma.equalsIgnoreCase("PC") || plataforma.equalsIgnoreCase("PlayStation")
+					|| plataforma.equalsIgnoreCase("Xbox") || plataforma.equalsIgnoreCase("Nintendo")) {
+				plataformaFavorita = true;
+			} else {
+				System.err.println("Plataforma incorrecta. Introduzcalo bien.");
+				System.out.println("Introduce tu plataforma favorita (PC, PlayStation, Xbox, Nintendo): ");
+				plataforma = leerLinea();
+			}
+		} while (!plataformaFavorita);
+		
+//validacion suscripcion(1.1.4)
+		System.out.print("¿Tiene suscripción premium? (S/N): ");
+		String suscripcion = leerLinea();
+		while (!suscripcion.equals("S") && !suscripcion.equals("N")) {
+			System.err.println("Dato erróneo. Debes escribir exactamente 'S' o 'N'.");
+			System.out.print("¿Tiene suscripción premium? (S/N): ");
+			suscripcion = leerLinea();
+		}
+		if (suscripcion.equalsIgnoreCase("S")) {
+			suscripcion = "Si";
+		} else {
+			suscripcion = "No";
+		}
+		
+//calculos finales(1.1.5)
+		String id = nombre.substring(0, 3).toUpperCase() + "GAME" + año;
+		int edad=calcularEdad(año);
+		String tipo;
+		if (edad <= 17)
+			tipo = "Junior Gamer";
+		else if (edad <= 30)
+			tipo = "Pro Gamer";
+		else
+			tipo = "Master Gamer";
+
+		System.out.println("ID Usuario: " + id);
+		System.out.println("Edad: " + edad);
+		System.out.println("Tipo de usuario: " + tipo);
+		System.out.println("Plataforma favorita: " + plataforma);
+		System.out.println("Premium: " + suscripcion);
+	}
+
+//calcularEdadUsuario1.2	
+	public static void calcularEdadUsuario() throws IOException {
+		int año = pedirNumeroEnRango("Introduce el año de nacimiento: ", 1920, 2025);
+		int edad = calcularEdad(año);
+		String pegi;
+
+		if (edad >= 18) pegi = "PEGI 18";
+		else if (edad >= 16) pegi = "PEGI 16";
+		else if (edad >= 12) pegi = "PEGI 12";
+		else if (edad >= 7) pegi = "PEGI 7";
+		else pegi = "PEGI 3";
+		System.out.println("Edad: " + edad);
+		System.out.println("Puede jugar a juegos con etiqueta: " + pegi);
+	}
+
+//2
+	public static void catalogoDeJuegos() throws NumberFormatException, IOException {
+		boolean volver = false;
+		do {
+			System.out.println("--- CATÁLOGO DE JUEGOS ---");
+			System.out.println();
+			System.out.println("1. Añadir juegos a la biblioteca");
+			System.out.println("2. Calcular espacio total ocupado");
+			System.out.println("3. Volver al menú principal");
+			System.out.print("Elige una opción: ");
+			int opcion = leerInt();
+			
+			switch (opcion) {
+			
+			case 1:añadirJuegosBiblioteca();break;
+			case 2:calcularEspacioTotal();break;
+			case 3:volver = true;break;
+			default:System.err.println("Opción incorrecta");
+			}
+			System.out.println();
+		}while(!volver);
+	}
+	
+//2.1
+	public static void añadirJuegosBiblioteca() throws IOException {
+	    System.out.print("¿Cuántos juegos quieres añadir?: ");
+	    int cantidad = leerIntPositivo();
+	    
+	    int totalJuegos = 0;
+	    double totalGastado = 0;
+	    
+	    for (int i = 0; i < cantidad; i++) {
+	        System.out.print("Nombre del juego: ");
+	        String nombre = leerLinea();
+
+	        System.out.print("Tamaño en GB de " + nombre + ": ");
+	        double tamaño = leerDoublePositivo();		        
+
+	        System.out.print("Precio de " + nombre + ": ");
+	        double precio = leerDoublePositivo();	    
+
+	        totalJuegos++;
+	        totalGastado += precio;
+	    }
+
+	    System.out.println("Total de juegos: " + totalJuegos);
+	    System.out.println("Total gastado: " + totalGastado + "€");
+	}
+	
+//2.2 comprobar código
+	public static void calcularEspacioTotal() throws IOException {
+		System.out.print("Memoria disponible en GB: ");
+		double memoriaTotal = leerDoublePositivo();
+		System.out.print("¿Cuántos juegos vas a instalar?: ");
+		int juegos = leerIntPositivo();
+		
+		double espacioOcupado=0;
+		for(int i = 1; i<=juegos; i++) {
+			System.out.print("Tamaño del juego " + i + " en GB: ");
+			
+			double tamaño = leerDoublePositivo();
+
+			if (espacioOcupado + tamaño > memoriaTotal) {
+				System.err.println("¡Memoria superada! No puedes instalar más juegos.");
+				System.out.println("Espacio total ocupado: " + espacioOcupado + " GB");
+            return;
+		}
+
+        espacioOcupado += tamaño;
+    }
+
+    System.out.println("Espacio total ocupado: " + espacioOcupado + " GB");
+	}
+	
+//3
+	public static void sistemaDeValoraciones() throws IOException {
+	    System.out.print("Nombre del juego a valorar: ");
+	    String juego = leerLinea();
+	
+	    System.out.print("¿Cuántos usuarios han valorado el juego " + juego + " ?: ");
+	    int numeroUsuarios = leerIntPositivo();
+	
+	    double sumaNotas = 0;
+	
+	    for (int i = 1; i <= numeroUsuarios; i++) {
+	        double nota = -1;
+	        boolean notaValida = false;
+	
+	        while (!notaValida) {	           
+	                System.out.print("Valoración del usuario " + i + " (0-10): ");
+	                nota = leerDoublePositivo();
+	
+	                if (nota < 0 || nota > 10) {
+	                    System.err.println("Nota inválida. Debe estar entre 0 y 10.");
+	                } else {
+	                    notaValida = true;
+	                }
+	            } 	
+	        sumaNotas += nota;
+	    }
+	
+	    double media = sumaNotas / numeroUsuarios;
+	    System.out.println("Nota media: " + media);
+
+	    String resumen;
+	    if (media <= 4.9) resumen = "Decepcionante";
+	    else if (media <= 6.9) resumen = "Aceptable";
+	    else if (media <= 8.4) resumen = "Bueno";
+	    else if (media <= 9.4) resumen = "Excelente";
+	    else resumen = "Obra Maestra";
+	
+	    System.out.println("Resumen: " + resumen);
+}
+	
+//4	
+	public static void estadísticasYReportes() throws IOException {
+		boolean volver = false;
+
+	    do {
+	        System.out.println("--- ESTADÍSTICAS Y REPORTES ---");
+	        System.out.println("1. Contador de juegos completados");
+	        System.out.println("2. Calcular horas totales de juego");
+	        System.out.println("3. Volver al menú principal");
+	        System.out.print("Elige una opción: ");
+
+	        int opcion = leerInt();
+
+	        switch (opcion) {
+	        case 1:contadorJuegosCompletados();break;
+	        case 2:calcularHorasTotalesJuego();break;
+	        case 3:volver = true;break;
+	        default:System.err.println("Opción no válida.");
+	        }
+	        System.out.println();
+	        }while (!volver);
+	    }
+
+//método recursivo
+	public static void mostrarJuegosRecursivos(int numero) {
+	    if (numero == 0) {
+	        return;
+	    }
+	    System.out.println("Has completado el juego número: " + numero);
+	    mostrarJuegosRecursivos(numero - 1);
+	}
+
+//4.1
+	public static void contadorJuegosCompletados() throws IOException {
+	    int numero = -1;
+	    do {	    
+	            System.out.print("Número de juegos completados este año: ");
+	            numero = leerIntPositivo();
+	            
+	            if (numero > 500) {
+	                System.err.println("Número excesivamente alto. Introduce un valor hasta 500.");
+	            }   
+	    } while (numero < 0 || numero > 500);
+
+	    mostrarJuegosRecursivos(numero);
+	}
+
+//solo horas
+	public static double calcularHorasTotales(int horas) {
+    	return horas;
+}
+
+//horas + minutos
+	public static double calcularHorasTotales(int horas, int minutos) {
+    	double horasConvertidas = minutos / 60.0;
+    	return horas + horasConvertidas;
+}	
+	
+//4.2
+	public static void calcularHorasTotalesJuego() throws IOException {
+
+    String opcion = "";
+    boolean valido = false;
+    while (!valido) {
+        System.out.print("¿Quieres introducir solo horas (H) u horas y minutos (HM)?: ");
+        opcion = leerLinea();
+
+        if (opcion.equals("H") || opcion.equals("HM")) {
+            valido = true;
+        } else {
+            System.err.println("ERROR. Opción no válida.");
+        }
+    }
+	//caso1 (horas solo)
+     if (opcion.equals("H")) {
+        System.out.print("Horas: ");
+        int horas = leerIntPositivo();
+
+        double total = calcularHorasTotales(horas);
+        System.out.println("Total de horas jugadas: " + total);
+    } else { //caso2 (horas + minutos)
+        System.out.print("Horas: ");
+        int horas = leerIntPositivo();
+
+        System.out.print("Minutos: ");
+        int minutos = leerIntPositivo();
+
+        while (minutos >= 60) {
+            System.err.println("Los minutos deben estar entre 0 y 59.");
+            System.out.print("Minutos: ");
+            minutos = leerIntPositivo();
+        }
+
+        double total = calcularHorasTotales(horas, minutos);
+        System.out.println("Total de horas jugadas: " + total);
+		}
+	}
+
+//recursiva
+	public static double calcularPrecioFinal(double precio, int descuento) {
+
+	    double precioFinal = precio - (precio * descuento / 100);
+
+	    if (precioFinal > 15) {
+	        System.out.println("Se aplica un descuento adicional del 5% porque el precio es mayor de 15€.");
+	        return calcularPrecioFinal(precioFinal, 5);
+	    }
+	    return precioFinal;
+	}
+	
+//5
+	public static void calculadoraDeDescuentos() throws IOException {
+
+        System.out.print("Introduce el precio del juego: ");
+        double precio = leerDoublePositivo();
+
+        int descuento = pedirNumeroEnRango("Introduce el porcentaje de descuento (0-100): ", 0, 100);
+
+        double precioFinal = calcularPrecioFinal(precio, descuento);
+
+        double ahorro = precio - precioFinal;
+
+        System.out.println("Precio original: " + precio + "€");
+        System.out.println("Precio final: " + precioFinal + "€");
+        System.out.println("Ahorro total: " + ahorro + "€");
+	}
+}

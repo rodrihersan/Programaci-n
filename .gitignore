@@ -1,0 +1,13 @@
+# Eclipse
+*.project
+*.classpath
+.settings/
+
+# Compilados
+bin/
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+*.swp

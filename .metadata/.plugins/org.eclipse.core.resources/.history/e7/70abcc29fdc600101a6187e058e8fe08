@@ -1,0 +1,44 @@
+package Arrays;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ejercicio15 {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		int[] array = new int[8];
+        for(int i = 0; i < array.length; i++) {
+            array[i] = leerInt("Introduce el número " + (i + 1) + " de 8: ");
+        }
+
+        int pos=0;
+        while (pos < 0 || pos > 7);
+
+        int[] nuevoArray = new int[7];
+        int indice = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (i != pos) {
+                nuevoArray[indice] = array[i];
+                indice++;
+            }
+        }
+
+        System.out.println("Array original:");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+
+        System.out.println("Array sin la posición " + pos + ":");
+        for (int i = 0; i < nuevoArray.length; i++) {
+            System.out.print(nuevoArray[i] + " ");
+        }
+    }
+
+	public static int leerInt(String mensaje) throws NumberFormatException, IOException {
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		System.out.print(mensaje);
+		int num = Integer.parseInt(leer.readLine());
+		return num;
+		}
+	}

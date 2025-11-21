@@ -1,0 +1,41 @@
+package EjerciciosOperadoresyExpresiones;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class OperadoresyExpresiones2 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+		//6.Calcula el área y la circunferencia de un círculo cuyo radio se debe preguntar al usuario.
+		//Fórmulas: Área = π * radio². Circunferencia = 2*π*radio
+		BufferedReader leer2 = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Dame el valor del radio y te calculo el área y la cirunferencia");
+		float numero1 = Float.parseFloat(leer2.readLine());
+		System.out.println("El área es: " + Math.PI * Math.pow(numero1,2));
+		System.out.println("La circunferencia es: " + 2 * Math.PI * numero1);
+		
+		//7.Realizar un algoritmo que permita determinar el área y el volumen de un cilindro cuyas
+		//dimensiones radio y altura se leen desde el teclado. V = π * radio * radio * altura. 
+		//A = 2 * π* radio * altura
+		
+		System.out.println("Dame el valor del radio y de la altura y te calculo el volumen y area de un cilindro");
+		float numero2 = Float.parseFloat(leer2.readLine());
+		float numero3 = Float.parseFloat(leer2.readLine());
+		System.out.println("El área es: " + 2 * Math.PI * numero2 * numero3);
+		System.out.println("El volumen es: " + Math.PI * numero3 * Math.pow(numero2,2));
+		
+		//8.Realizar un algoritmo que lea el peso de una persona en libras y muestre por pantalla 
+		//el peso de dicho hombre en kilos y en gramos. Teniendo en cuenta que 1LIBRA = 0,4535 KILOS.
+
+		System.out.println("Dame tu peso en libras y te lo calculo en kilogramos y gramos: ");
+		float numero4 = Float.parseFloat(leer2.readLine());
+		float numero5 = 0.4535f;
+		System.out.println("Tú peso en kilogramos es: " + numero4 * numero5);
+		System.out.println("Tu peso en gramos es: " + numero4 * numero5 * 1000);
+		
+	}
+
+}
