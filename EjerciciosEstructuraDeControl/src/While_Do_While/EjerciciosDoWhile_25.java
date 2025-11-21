@@ -1,0 +1,157 @@
+package While_Do_While;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+	
+public class EjerciciosDoWhile_25 {
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		// TODO Auto-generated method stub
+		BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+		
+		//ejercicio25
+		
+		System.out.println("Dame un valor numerico entero igual o mayor a 5: ");
+		int numero = Integer.parseInt(lector.readLine());
+		int temporal = 1;
+		
+		if (numero < 5)
+			System.out.println("valor erroneo");
+		else {
+		while(temporal <= numero) {
+			if(temporal % 5 == 0)
+				System.out.println(temporal + " es multipo de 5");
+			temporal++;} //temporal = temporal+1
+		}
+		
+		//ejercicio26
+		int numero2;
+		int suma = 0;
+		int contador = 0;
+		int media;
+		
+		while(contador < 5) {
+			System.out.print("Introduce el numero: ");
+			numero2 = Integer.parseInt(lector.readLine());
+			suma = suma + numero2;
+			contador++;
+
+		}
+		
+		media = suma/5;
+		System.out.println("la media es: " + media);
+		
+		//ejercicio27
+		//int numero3;
+		
+		/*con do while
+		do {
+			numero3 = Integer.parseInt(lector.readLine());
+			if(numero3 % 2 == 0)
+				System.out.println("multiplo de 2");
+			if(numero3 % 3 == 0)
+				System.out.println("multiplo de 3");
+			if(numero3 % 5 == 0)
+				System.out.println("multiplo de 5");
+		}while(numero3 != 0);*/
+		
+		// ejercicio27 con while
+		System.out.print("Introduce el numero: ");
+		int numero4 = Integer.parseInt(lector.readLine());
+		while(numero4 != 0) {
+		System.out.print("Introduce el numero: ");
+		numero4 = Integer.parseInt(lector.readLine());
+		if(numero % 2 == 0)
+			System.out.println("Multiplo de 2");
+		if(numero % 3 == 0)
+			System.out.println("Multiplo de 3");
+		if(numero % 5 == 0)
+			System.out.println("Multiplo de 5");}
+		
+		//ejercicio28
+		 int numero5;
+	     int mayor = 0;
+	     int menor = 0;
+	     String respuesta;
+	     boolean primero = true; // Para saber si es el primer número
+		
+		do{
+			System.out.println("Introduzca un numero entero: ");
+			numero5 = Integer.parseInt(lector.readLine());
+			
+			if(primero) {
+				mayor = numero5;
+				menor = numero5;
+				primero = false;
+			}else {
+				if (numero5 > mayor) {
+					mayor = numero5;
+				}
+				if (numero5 < menor) {
+					menor = numero5;
+				}
+			}
+			System.out.print("¿Desea introducir más números? (s/n): ");
+            respuesta = lector.readLine();
+		
+			}while(respuesta.equalsIgnoreCase("si") || respuesta.equalsIgnoreCase("s"));
+				System.out.println("El número mayor es: " + mayor);
+		        System.out.println("El número menor es: " + menor);
+
+		//Ejercicio30
+		
+		int numero3;
+		int numeroTotal=0;
+		int numMayor;
+		int sumaFallados=0;
+		
+		System.out.print("Introduce el numero inicial: ");
+		numero3 = Integer.parseInt(lector.readLine());
+		numMayor = numero3;
+		
+		while(numero3 !=0) {
+			if(numMayor > numero3) {
+				sumaFallados++;
+				System.out.println("Fallo es menor");
+			}else {
+				numMayor = numero3;
+			}
+			numeroTotal++;
+			System.out.print("Introduce el numero: ");
+			numero3 = Integer.parseInt(lector.readLine());
+			}
+		System.out.print("Numero fallados "+ sumaFallados);
+		System.out.print("Total de numeros introducidos "+ numeroTotal);
+		
+		//ejercicio32
+		
+		int intentos = 10;
+		//math random devuelve el double, como quiero un int lo convierto a int
+		//con (int) lo que hago es castear es double y convertirlo a int
+		
+		int numAleatorio = (int) (Math.random()*100 + 1);
+		
+		System.out.println("Introduce un numero");
+		int numero6 = Integer.parseInt(lector.readLine());
+		while(numero6 != numAleatorio || intentos >=0) {
+			if(numero6 < numAleatorio) {
+				System.out.println("Es mayor");
+			}else {
+				System.out.println("Es menor");
+			}
+			intentos--;
+			System.out.println("introduce un numero");
+			numero6 = Integer.parseInt(lector.readLine());
+		}
+		if(numero6 == numAleatorio)
+			System.out.println("Enhorabuena has acertado el numero!");
+		else
+			System.out.println("Te has quedado sin intentos. El numero era "+ numAleatorio);
+		
+		//ejercicio 33
+		
+		
+	
+	}
+	}

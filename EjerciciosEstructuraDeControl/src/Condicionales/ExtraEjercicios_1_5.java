@@ -1,0 +1,162 @@
+package Condicionales;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ExtraEjercicios_1_5 {
+	public static void main(String[] args) throws IOException{
+	BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+		// TODO Auto-generated method stub
+	//1. Escribe un programa que pida el nombre de una película, la edad del espectador y si tiene
+	//permiso de un adulto (S/N). El programa debe determinar si puede ver la película
+	//considerando. Si tiene 18 años o más, puede ver cualquier película. Si tiene entre 13 y 17
+	//años y tiene permiso, puede verla. En cualquier otro caso, no puede verla. Recoge la
+	//variable 'S' o 'N' en formato char. Muestra el nombre y si puede verla en formato boolean
+	//(True/False)
+		System.out.println("Dame el nombre de una pelicula: ");
+		String nombrePelicula2 = lector.readLine();
+		System.out.print("Dame tu edad: ");
+		int edad2 = Integer.parseInt(lector.readLine());
+		boolean  puedeVerla = true;
+		if(edad2 >=13 && edad2 <=17) {
+			System.out.print("Permiso S/N: ");
+			char permiso = lector.readLine().toUpperCase().charAt(0);
+			if(permiso == 'N')
+				puedeVerla = false;
+		}else if(edad2 < 13)
+					puedeVerla = false;
+				
+		if(puedeVerla) {
+					System.out.print(nombrePelicula2 + " puede verla");
+		}else {
+					System.out.println(nombrePelicula2 + " no puede verla");}
+		
+		
+		//2.Crea un programa que pida una contraseña al usuario y verifique si cumple unos requisitos
+		//de seguridad. Debe tener al menos 8 caracteres de longitud. Debe contener al menos un
+		//número (pide al usuario si contiene número S/N). Debe contener al menos una mayúscula
+		//(pide al usuario si contiene mayúscula S/N). Si cumple TODAS las condiciones, muestra
+		//"Contraseña válida", si no, muestra "Contraseña no válida".
+		
+		System.out.println("Dame una contraseña de al menos 8 caracteres: ");
+		String contraseña = lector.readLine();
+		
+		System.out.print("Contiene algun numero? Responda si o no.");
+		char numero = lector.readLine().toUpperCase().charAt(0);
+		
+		System.out.print("Contiene alguna mayuscula? Responda si o no.");
+		char mayuscula = lector.readLine().toUpperCase().charAt(0);
+		
+		if(contraseña.length() < 8) {
+			System.out.print("Contraseña no valida");
+		
+		}else{
+				if(numero == 's' && mayuscula == 's') {
+					System.out.print("Contraseña valida");
+				}else {
+			System.out.println("Contraseña no valida");}}
+	
+		
+		//3. Se necesita un programa para una tienda que aplica descuentos según el importe de
+		//compra y si el cliente tiene tarjeta de socio. Las compras de menos de 50€:sin descuento
+		//(o 5% si es socio). Compras de 50€ a 100€: 10% descuento (o 15% si es socio). Compras
+		//superiores a 100€: 15% descuento (o 20% si es socio). Pide el importe de compra y si es
+		//socio (S/N), y muestra el importe final a pagar.
+		 System.out.print("Introduce el importe de la compra: ");
+	        double importe = Double.parseDouble(lector.readLine());
+
+	        // Pedir si es socio
+	        System.out.print("¿Es socio? (S/N): ");
+	        char socio = lector.readLine().trim().toUpperCase().charAt(0);
+
+	        double descuento = 0;
+
+	        if (importe < 50) {
+	            if (socio == 'S') {
+	                descuento = 0.05;
+	            } else {
+	                descuento = 0;
+	            }
+	        } else if (importe <= 100) {
+	            if (socio == 'S') {
+	                descuento = 0.15;
+	            } else {
+	                descuento = 0.10;
+	            }
+	        } else { // importe > 100
+	            if (socio == 'S') {
+	                descuento = 0.20;
+	            } else {
+	                descuento = 0.15;
+	            }
+	        }
+
+	        double importeFinal = importe * (1 - descuento);
+	        //4. Escribe un programa para calcular la nota final con recuperación. El programa pedirá tres
+	        //notas y calculará la nota media. Si la nota media es 5 o superior, ha aprobado. Si es inferior
+	       // a 5 pero tiene al menos una nota de 7 o superior, puede hacer recuperación. En cualquier
+	        //otro caso, debe repetir. Muestra la nota media y el resultado
+	        //(Aprobado/Recuperación/Repetir).
+
+	        
+	        System.out.print("Introduce la primera nota: ");
+	        double nota1 = Double.parseDouble(lector.readLine());
+
+	        System.out.print("Introduce la segunda nota: ");
+	        double nota2 = Double.parseDouble(lector.readLine());
+
+	        System.out.print("Introduce la tercera nota: ");
+	        double nota3 = Double.parseDouble(lector.readLine());
+
+	        // Calcular la media
+	        double media = (nota1 + nota2 + nota3) / 3;
+
+	        // Evaluar condiciones
+	        if (media >= 5) {
+	            System.out.printf("Nota media: %.2f\nResultado: Aprobado\n", media);
+	        } else if (media < 5 && (nota1 >= 7 || nota2 >= 7 || nota3 >= 7)) {
+	            System.out.printf("Nota media: %.2f\nResultado: Recuperación\n", media);
+	        } else {
+	            System.out.printf("Nota media: %.2f\nResultado: Repetir\n", media);
+	        }
+		
+	        
+	        //5. Se necesita un programa para un club deportivo que asigna categorías según edad y nivel:
+	        //	Menores de 12 años: equipo infantil (independientemente del nivel)
+	        	//De 12 a 15 años: si nivel es "alto" o "medio", equipo juvenil; si es "bajo", equipo
+	        //	infantil
+	        	//1
+	        	//De 16 a 18 años: si nivel es "alto", equipo senior; si no, equipo juvenil
+	        	//Mayores de 18: equipo senior (independientemente del nivel)
+	        	//Pide la edad, el nivel (alto/medio/bajo) y muestra a qué equipo se asigna.
+	        System.out.print("Introduce la edad: ");
+	        int edad = Integer.parseInt(lector.readLine());
+
+	        // Pedir nivel
+	        System.out.print("Introduce el nivel (alto/medio/bajo): ");
+	        char nivel = lector.readLine().trim().toLowerCase().charAt(0);  // 'a', 'm' o 'b'
+
+	        String equipo;
+
+	        if (edad < 12) {
+	            equipo = "equipo infantil";
+	        } else if (edad >= 12 && edad <= 15) {
+	            if (nivel == 'a' || nivel == 'm') {
+	                equipo = "equipo juvenil";
+	            } else { // nivel == 'b'
+	                equipo = "equipo infantil";
+	            }
+	        } else if (edad >= 16 && edad <= 18) {
+	            if (nivel == 'a') {
+	                equipo = "equipo senior";
+	            } else {
+	                equipo = "equipo juvenil";
+	            }
+	        } else { // mayores de 18
+	            equipo = "equipo senior";
+	        }
+
+	        System.out.println("Asignado a: " + equipo); 
+	}
+}

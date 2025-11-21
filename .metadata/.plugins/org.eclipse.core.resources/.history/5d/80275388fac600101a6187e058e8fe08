@@ -1,0 +1,56 @@
+package EjerciciosEstructurasDeControl.Condicionales;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class EjerciciosControladores3 {
+
+	public static void main(String[] args) throws IOException{
+		BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+		// TODO Auto-generated method stub
+		
+		//10.Programa que pida tres números y los muestre ordenados (de mayor a menor)
+		System.out.println("Dame tres numeros y te los ordeno de mayor a menor: ");
+		
+		double n1 = Double.parseDouble(lector.readLine());
+		double n2 = Double.parseDouble(lector.readLine());
+		double n3 = Double.parseDouble(lector.readLine());
+		
+		if(n1 >= n2 && n1 >= n3) {
+			if(n2 > n3) {
+				System.out.print("El orden es: " + n1 +" " + n2 + " " + n3);}
+			else {
+				System.out.print("El orden es: " + n1 +" " + n3 +" " + n2);}}
+			
+			else if(n2 >= n1 && n2 >= n3) {
+				if(n1 > n3) {
+					System.out.print("El orden es: " + n2 +" " + n1 +" " + n3);}
+			else {
+				System.out.print("El orden es: " + n2 +" " + n3 +" " + n1);}}
+				
+			else if(n3 >= n1 && n3 >=n2) {
+				if(n1 > n2) {
+					System.out.print("El orden es: " + n3 +" " + n1 +" " + n2);}
+				else {
+					System.out.println("El orden es: " + n3 +" " + n2 +" " + n1);}}
+		
+		
+		//11. Realizar un algoritmo al que dado la longitud de los tres lados de un triángulo, determine el
+		//tipo de dicho triángulo: Equilátero (Todos los lados son iguales), Isósceles (Dos lados
+		//iguales, uno diferente) ó Escaleno (Todos los lados son diferentes).
+		
+		System.out.print("Dame la longitud de los 3 lados de un triangulo y "
+			+"te dire si es equilatero isosceles o escaleno: ");
+		double l1 = Double.parseDouble(lector.readLine());
+		double l2 = Double.parseDouble(lector.readLine());
+		double l3 = Double.parseDouble(lector.readLine());
+		
+		if(l1 == l2 && l1==l3) {
+			System.out.println("El triangulo es equilátero :) ");}
+		else if((l1 == l2 && l1 != l3) || (l1 == l3 && l2!=l1) || (l2 == l3 && l3!=l1)) {  
+			System.out.println("El triangulo es isósceles :)");}
+		else {
+			System.out.println("El triangulo es escaleno :)");}
+	}
+}				

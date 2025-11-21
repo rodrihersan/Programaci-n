@@ -1,0 +1,21 @@
+package Metodos;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ejercicio3 {
+	
+	public static int multiplicacion(int num1, int num2) {
+		return num1*num2;
+	}
+	public static void main(String[] args) throws IOException{
+		BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Introduce dos numeros: ");
+		int num1 = Integer.parseInt(lector.readLine());
+		int num2 = Integer.parseInt(lector.readLine());
+		int resultado = multiplicacion (num1,num2);
+		System.out.println("El resultado es: "+resultado);
+	}
+
+}

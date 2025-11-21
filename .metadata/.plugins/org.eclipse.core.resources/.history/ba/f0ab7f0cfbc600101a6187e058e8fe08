@@ -1,0 +1,112 @@
+package Ejercicios;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class OperadoresyExpresiones6 {
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader leer5 = new BufferedReader(new InputStreamReader(System.in));
+		// TODO Auto-generated method stub
+		
+		//16. Escribe un programa que simule un viaje
+		//Pide destino del viaje
+		//Pide distancia en km
+		//Pide consumo del coche (l/100km)
+		//Pide precio del combustible por litro
+		//Calcula y muestra:
+		//Litros necesarios. Litros = (consumo / 100) × distancia
+		//Coste del combustible
+		//Tiempo estimado (asumiendo 90 km/h de media)
+		//Coste por kilómetro
+
+		System.out.print("Introduce el destino: ");
+		String destino = leer5.readLine();
+		
+		System.out.print("Introduce la distancia en Km: ");
+		double distancia = Double.parseDouble(leer5.readLine());
+		
+		System.out.print("Introduce el consumo del coche: ");
+		double consumo = Double.parseDouble(leer5.readLine());
+		
+		System.out.print("Introduce el precio del combustible por litro: ");
+		double precioCombustible = Double.parseDouble(leer5.readLine());
+		
+		double litrosNecesarios = (consumo/100) * distancia;
+		System.out.println("Litros necesarios: " + litrosNecesarios);
+		
+		double costeCombustible = litrosNecesarios * precioCombustible;
+		System.out.println("Coste combustible: " + costeCombustible);
+		
+		double tiempoEstimado = distancia / 90;
+		System.out.println("Tiempo estimado: " + tiempoEstimado);
+		
+		double costePorKilometro = costeCombustible/distancia;
+		System.out.println("Coste por kilómetro: " + costePorKilometro);
+		
+		
+		
+		
+		
+		
+		//18. Simula la compra de 3 productos:
+			//Pide nombre y precio de 3 productos
+			//Pide descuento a aplicar (en %)
+			//Calcula:
+			//Subtotal (suma de precios)
+			//Descuento en euros
+			//IVA (21% sobre precio con descuento)
+			//Total final
+			//Muestra un recibo detallado
+		
+		System.out.print("Dame el nombre de tres productos: ");
+		String productos = leer5.readLine();
+		System.out.print("Dame el precio del primer producto: ");
+		double precio1 = Double.parseDouble(leer5.readLine());
+		System.out.print("Dame el precio del segundo producto: ");
+		double precio2 = Double.parseDouble(leer5.readLine());
+		System.out.print("Dame el precio del tercer producto: ");
+		double precio3 = Double.parseDouble(leer5.readLine());
+		System.out.print("Dame el descuento a aplicar: ");
+		double descuento = Double.parseDouble(leer5.readLine());
+		
+		double suma = precio1 + precio2 + precio3;
+		double descuentototal = suma - (suma * descuento);
+		
+		double IVA 
+		
+		System.out.println("El subtotal será: " + suma + " euros.");
+		
+		
+		//19.Programa Generador de Contraseñas Básico
+		//Pide el nombre del usuario
+		//Pide su año de nacimiento
+		//Pide su color favorito
+		//Genera una "contraseña" combinando:
+		//Primeras 3 letras del nombre en mayúsculas
+		//Últimos 2 dígitos del año
+		//Primera letra del color en minúscula
+		//Un numero aleatorio entre 1 y 100. Puede usar Math.floor(Math.random()
+		//* 100) + 1;
+		
+		System.out.print("Introduce tu nombre de usuario: ");
+		String nombreUsuario = leer5.readLine();
+		System.out.print("Introduce tu año de nacimiento: ");
+		String añoNacimiento = leer5.readLine();
+		System.out.print("Introduce tu color de favorito: ");
+		String color = leer5.readLine();
+		
+		String primerasLetras = nombreUsuario.substring(0,3).toUpperCase();
+		String ultimosDigitos = añoNacimiento.substring(2,4);
+		char primeraLetraColor = color.charAt(0);
+		double numeroAleatorio = Math.floor(Math.random()*100)+1;
+		
+		System.out.println("La contraseña es: " + primerasLetras + ultimosDigitos 
+				+ primeraLetraColor + numeroAleatorio);
+		
+		
+
+	}
+
+}
