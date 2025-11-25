@@ -1,5 +1,1 @@
-2025/11/24-09:20:37.473 265c Log #3: 5 ops saved to Table #4 OK
-2025/11/24-09:20:37.475 265c Archiving C:\Users\alumnofp\Desktop\Programaci-n\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/000003.log: OK
-2025/11/24-09:20:37.476 265c Table #4: 5 entries OK
-2025/11/24-09:20:37.477 265c Archiving C:\Users\alumnofp\Desktop\Programaci-n\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/MANIFEST-000001: OK
-2025/11/24-09:20:37.481 265c **** Repaired leveldb C:\Users\alumnofp\Desktop\Programaci-n\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database; recovered 1 files; 233 bytes. Some data may have been lost. ****
+2025/11/24-09:20:37.484 265c Reusing MANIFEST C:\Users\alumnofp\Desktop\Programaci-n\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Site Characteristics Database/MANIFEST-000001
