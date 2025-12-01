@@ -14,7 +14,7 @@ public class ejercicio36 {
 			for(int columna = 0; columna < butacas[fila].length;columna++)
 				butacas[fila][columna] = 'L';
 		do {
-			System.out.println("=== BIBLIOTECA Calasanz Games ===");
+			System.out.println("=== RESERVA DE ASIENTOS ===");
 			System.out.println("----------------------------------");
 			System.out.println();
 			System.out.println("--- MENÚ PRINCIPAL ---");
@@ -35,7 +35,7 @@ public class ejercicio36 {
 				case 2:reservaAsientos(butacas);break;
 				case 3:cancelarReserva(butacas);break;
 				case 4:contarAsientos(butacas);break;
-				//case 5:mosntrasAsientosFila(butacas);break;
+				case 5:moostrarAsientosFila(butacas);break;
 				//case 6:comprobarFila();break;
 				//case 7:montrarPorcentaje();break;
 				//case 8:reiniciarSala();break;
@@ -75,7 +75,7 @@ public class ejercicio36 {
 			}
 		}
 		if(encontrado == false)
-			System.out.println("Has introducido una fila y una columna que no existen");
+			System.out.println("Has introducido una fila y/o una columna que no existen");
 		}
 	
 	public static void cancelarReserva(char[][] butacas)  throws NumberFormatException, IOException{
@@ -117,7 +117,7 @@ public class ejercicio36 {
 		System.out.println("Asientos ocupados: "+ (asientosOcupados));
 	}
 	
-	public static void mosntrasAsientosFila(char[][] butacas)  throws NumberFormatException, IOException{
+	public static void moostrarAsientosFila(char[][] butacas)  throws NumberFormatException, IOException{
 		
 	}
 	
