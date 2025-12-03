@@ -1,5 +1,5 @@
 # Directorios de compilación
-bin/
+**/bin/
 target/
 
 # Archivos de Eclipse
@@ -10,9 +10,8 @@ target/
 *.swp
 
 # Archivos de configuración del workspace
-*.class
-*.project
-*.classpath
+.project
+.classpath
 .settings/
 
 # Archivos generados por el sistema
