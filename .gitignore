@@ -1,1 +1,20 @@
-/.metadata/
+# Directorios de compilación
+bin/
+target/
+
+# Archivos de Eclipse
+.metadata/
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Archivos de configuración del workspace
+*.class
+*.project
+*.classpath
+.settings/
+
+# Archivos generados por el sistema
+.DS_Store
+Thumbs.db
