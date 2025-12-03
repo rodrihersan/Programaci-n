@@ -31,7 +31,7 @@ public class ejercicio41 {
             switch(opcion) {
             case 1:introducirNombres(alumnos, asignaturas); break;
             case 2:introducirNotas(alumnos, asignaturas, notas);break;
-			//case 3:
+			case 3: mostrarTablaCompleta(alumnos, asignaturas, notas);break;
 			//case 4:
 			//case 5:
 			//case 6:
@@ -62,18 +62,43 @@ public class ejercicio41 {
 	            String asignatura;
 	            do {
 	                asignatura = leerString("Asignatura " + (i + 1) + ": ");
-	                if (asignatura.isEmpty()) {
+	                if (asignatura.trim().isEmpty()) {
 	                    System.out.println("El nombre de a asignatura no puede estar vacío.");
 	                }
-	            } while (asignatura.isEmpty());
+	            } while (asignatura.trim().isEmpty());
 	            asignaturas[i] = asignatura;
 	        }
 
 	    }
 	public static void introducirNotas(String[] alumnos, String[] asignaturas, double [][] notas)
 			throws NumberFormatException, IOException{
-		
-		
+			System.out.println("--- INTRODUCIR NOTAS ---\n");
+			
+			for (int i = 0; i < notas.length; i++) {
+				System.out.println("--- Notas de " + alumnos[i] + " ---");
+				for (int j = 0; j < notas[i].length; j++) {
+					notas[i][j] = leerNota("Introduce la nota de " + asignaturas[j] + ": ");
+		}
+		System.out.println();
+		}
+		System.out.println("Todas las notas han sido introducidas.");
+	}
+	
+	public static void mostrarTablaCompleta(String[] alumnos, String[] asignaturas, double[][] notas) {
+			System.out.println("\n--- TABLA COMPLETA ---\n");
+			System.out.print("\t\t");
+			for (int i = 0; i < asignaturas.length; i++) {
+				System.out.print(asignaturas[i] + "\t\t");
+			}
+			
+			System.out.println();
+			for (int i = 0; i < notas.length; i++) {
+				System.out.print(alumnos[i] + "\t\t");
+				for (int j = 0; j < notas[i].length; j++) {
+					System.out.print(notas[i][j] + "\t\t");
+				}
+				System.out.println();
+		}
 	}
 
 	// Metodos auxiliares
