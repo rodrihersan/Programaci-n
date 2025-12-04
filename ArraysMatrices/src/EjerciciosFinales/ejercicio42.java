@@ -55,11 +55,9 @@ public class ejercicio42 {
 	        System.out.println();
 	        
 	        for (int i = 0; i < candidatos.length; i++) {
-	            String nombre;
-	            
+	            String nombre;	            
 	            System.out.print("Candidato " + (i + 1) + ": ");
-	            nombre = leerLinea();
-	                
+	            nombre = leerLinea();	            
 	            candidatos[i] = nombre;
 	        }
 
@@ -81,11 +79,11 @@ public class ejercicio42 {
 		 System.out.println("--- REGISTRAR VOTOS ---");
 		 System.out.println();
 		 
-		 for (int i = 0; i < candidatos.length; i++) {
-			 System.out.println("Votos para " + candidatos[i] + ":");
-			 for (int j = 0; j < ciudades.length; j++) {
-				 System.out.print("Votos en " + ciudades[j] + ": ");
-				 votos[i][j] = leerIntPositivo();
+		 for (int fila = 0; fila < candidatos.length; fila++) {
+			 System.out.println("Votos para " + candidatos[fila] + ":");
+			 for (int columna = 0; columna < ciudades.length; columna++) {
+				 System.out.print("Votos en " + ciudades[columna] + ": ");
+				 votos[fila][columna] = leerIntPositivo();
 	            }
 	        }
 	    }
@@ -96,15 +94,15 @@ public class ejercicio42 {
 	        System.out.println();
 
 	        System.out.print("\t");
-	        for (int j = 0; j < ciudades.length; j++) {
-	            System.out.print(ciudades[j] + "\t");
+	        for (int i = 0; i < ciudades.length; i++) {
+	            System.out.print(ciudades[i] + "\t");
 	        }
 	        System.out.println();
 
-	        for (int i = 0; i < candidatos.length; i++) {
-	            System.out.print(candidatos[i] + "\t");
-	            for (int j = 0; j < ciudades.length; j++) {
-	                System.out.print(votos[i][j] + "\t");
+	        for (int fila = 0; fila < candidatos.length; fila++) {
+	            System.out.print(candidatos[fila] + "\t");
+	            for (int columna  = 0; columna  < ciudades.length; columna ++) {
+	                System.out.print(votos[fila][columna ] + "\t");
 	            }
 	            System.out.println();
 	        }
@@ -114,12 +112,12 @@ public class ejercicio42 {
 	    public static void totalPorCandidato(String[] candidatos, int[][] votos) {
 	        System.out.println("\n--- TOTAL POR CANDIDATO ---");
 
-	        for (int i = 0; i < candidatos.length; i++) {
+	        for (int fila = 0; fila < candidatos.length; fila++) {
 	            int total = 0;
-	            for (int j = 0; j < votos[i].length; j++) {
-	                total += votos[i][j];
+	            for (int columna = 0; columna < votos[fila].length; columna++) {
+	                total += votos[fila][columna];
 	            }
-	            System.out.println(candidatos[i] + ": " + total + " votos");
+	            System.out.println(candidatos[fila] + ": " + total + " votos");
 	        }
 	    }
 
@@ -127,12 +125,12 @@ public class ejercicio42 {
 	    public static void totalPorCiudad(String[] ciudades, int[][] votos) {
 	        System.out.println("\n--- TOTAL POR CIUDAD ---");
 
-	        for (int j = 0; j < ciudades.length; j++) {
+	        for (int columna = 0; columna < ciudades.length; columna++) {
 	            int total = 0;
-	            for (int i = 0; i < votos.length; i++) {
-	                total += votos[i][j];
+	            for (int fila = 0; fila < votos.length; fila++) {
+	                total += votos[fila][columna];
 	            }
-	            System.out.println(ciudades[j] + ": " + total + " votos");
+	            System.out.println(ciudades[columna] + ": " + total + " votos");
 	        }
 	    }
 
@@ -141,14 +139,14 @@ public class ejercicio42 {
 	        int max = -1;
 	        String ganador = "";
 
-	        for (int i = 0; i < candidatos.length; i++) {
+	        for (int fila = 0; fila < candidatos.length; fila++) {
 	            int total = 0;
-	            for (int j = 0; j < votos[i].length; j++) {
-	                total += votos[i][j];
+	            for (int columna = 0; columna < votos[fila].length; columna++) {
+	                total += votos[fila][columna];
 	            }
 	            if (total > max) {
 	                max = total;
-	                ganador = candidatos[i];
+	                ganador = candidatos[fila];
 	            }
 	        }
 
@@ -159,17 +157,17 @@ public class ejercicio42 {
 	    public static void ganadorPorCiudad(String[] candidatos, String[] ciudades, int[][] votos) {
 	        System.out.println("\n--- GANADOR POR CIUDAD ---");
 
-	        for (int j = 0; j < ciudades.length; j++) {
+	        for (int columna = 0; columna < ciudades.length; columna++) {
 	            int max = -1;
 	            String ganador = "";
 
-	            for (int i = 0; i < candidatos.length; i++) {
-	                if (votos[i][j] > max) {
-	                    max = votos[i][j];
-	                    ganador = candidatos[i];
+	            for (int fila = 0; fila < candidatos.length; fila++) {
+	                if (votos[fila][columna] > max) {
+	                    max = votos[fila][columna];
+	                    ganador = candidatos[fila];
 	                }
 	            }
-	            System.out.println(ciudades[j] + ": " + ganador);
+	            System.out.println(ciudades[columna] + ": " + ganador);
 	        }
 	    }
 
@@ -178,14 +176,14 @@ public class ejercicio42 {
 	        int max = -1;
 	        int pos = -1;
 
-	        for (int j = 0; j < ciudades.length; j++) {
+	        for (int columna = 0; columna < ciudades.length; columna++) {
 	            int total = 0;
-	            for (int i = 0; i < votos.length; i++) {
-	                total += votos[i][j];
+	            for (int fila = 0; fila < votos.length; fila++) {
+	                total += votos[fila][columna];
 	            }
 	            if (total > max) {
 	                max = total;
-	                pos = j;
+	                pos = columna;
 	            }
 	        }
 
@@ -197,12 +195,12 @@ public class ejercicio42 {
 	        System.out.println("\n--- CANDIDATO QUE GANÓ TODAS LAS CIUDADES ---");
 	        boolean encontrado = false;
 
-	        for (int i = 0; i < candidatos.length; i++) {
+	        for (int fila = 0; fila < candidatos.length; fila++) {
 	            boolean ganadorEnTodas = true;
 
-	            for (int j = 0; j < ciudades.length && ganadorEnTodas; j++) {
-	                for (int k = 0; k < candidatos.length; k++) {
-	                    if (votos[k][j] > votos[i][j]) {
+	            for (int columna = 0; columna < ciudades.length && ganadorEnTodas; columna++) {
+	                for (int otro = 0; otro < candidatos.length; otro++) {
+	                    if (votos[otro][columna] > votos[fila][columna]) {
 	                        ganadorEnTodas = false;
 	                        break;
 	                    }
@@ -210,7 +208,7 @@ public class ejercicio42 {
 	            }
 
 	            if (ganadorEnTodas) {
-	                System.out.println(candidatos[i] + " ganó en todas las ciudades.");
+	                System.out.println(candidatos[fila] + " ganó en todas las ciudades.");
 	                encontrado = true;
 	            }
 	        }
@@ -224,12 +222,12 @@ public class ejercicio42 {
 	    public static void diferenciaPrimeroSegundo(String[] candidatos, int[][] votos) {
 	        int[] totales = new int[candidatos.length];
 
-	        for (int i = 0; i < candidatos.length; i++) {
+	        for (int fila = 0; fila < candidatos.length; fila++) {
 	            int suma = 0;
-	            for (int j = 0; j < votos[i].length; j++) {
-	                suma += votos[i][j];
+	            for (int columna = 0; columna < votos[fila].length; columna++) {
+	                suma += votos[fila][columna];
 	            }
-	            totales[i] = suma;
+	            totales[fila] = suma;
 	        }
 
 	        int primero = -1, segundo = -1;
