@@ -16,7 +16,6 @@ public class ejercicio42 {
 
         do {
             System.out.println("--- SISTEMA DE VOTACIONES ---");
-            System.out.println();
             System.out.println("1. Introducir nombres de candidatos y ciudades");
             System.out.println("2. Registrar votos (matriz completa)");
             System.out.println("3. Mostrar tabla de votos");
