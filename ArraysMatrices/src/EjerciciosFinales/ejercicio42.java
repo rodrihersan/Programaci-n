@@ -16,7 +16,6 @@ public class ejercicio42 {
 
         do {
             System.out.println("--- SISTEMA DE VOTACIONES ---");
-            System.out.println();
             System.out.println("1. Introducir nombres de candidatos y ciudades");
             System.out.println("2. Registrar votos (matriz completa)");
             System.out.println("3. Mostrar tabla de votos");
@@ -111,16 +110,9 @@ public class ejercicio42 {
 
 //case4
 	    public static void totalPorCandidato(String[] candidatos, int[][] votos) {
-<<<<<<< HEAD
-	        System.out.println("--- TOTAL POR CANDIDATO ---");
-	        System.out.println();
-	        
-	        for (int i = 0; i < candidatos.length; i++) {
-=======
 	        System.out.println("\n--- TOTAL POR CANDIDATO ---");
 
 	        for (int fila = 0; fila < candidatos.length; fila++) {
->>>>>>> aae87ef469fb70f291600b00eb8cc71d2cfa697c
 	            int total = 0;
 	            for (int columna = 0; columna < votos[fila].length; columna++) {
 	                total += votos[fila][columna];
@@ -131,16 +123,9 @@ public class ejercicio42 {
 
 //case5
 	    public static void totalPorCiudad(String[] ciudades, int[][] votos) {
-<<<<<<< HEAD
-	        System.out.println("--- TOTAL POR CIUDAD ---");
-	        System.out.println();
-	        
-	        for (int j = 0; j < ciudades.length; j++) {
-=======
 	        System.out.println("\n--- TOTAL POR CIUDAD ---");
 
 	        for (int columna = 0; columna < ciudades.length; columna++) {
->>>>>>> aae87ef469fb70f291600b00eb8cc71d2cfa697c
 	            int total = 0;
 	            for (int fila = 0; fila < votos.length; fila++) {
 	                total += votos[fila][columna];
@@ -165,20 +150,14 @@ public class ejercicio42 {
 	            }
 	        }
 
-	        System.out.println("Ganador general: " + ganador + " con " + max + " votos.");
+	        System.out.println("\nGanador general: " + ganador + " con " + max + " votos.");
 	    }
 
 //case7
 	    public static void ganadorPorCiudad(String[] candidatos, String[] ciudades, int[][] votos) {
-<<<<<<< HEAD
-	        System.out.println("--- GANADOR POR CIUDAD ---");
-	        System.out.println();
-	        for (int j = 0; j < ciudades.length; j++) {
-=======
 	        System.out.println("\n--- GANADOR POR CIUDAD ---");
 
 	        for (int columna = 0; columna < ciudades.length; columna++) {
->>>>>>> aae87ef469fb70f291600b00eb8cc71d2cfa697c
 	            int max = -1;
 	            String ganador = "";
 
@@ -208,13 +187,12 @@ public class ejercicio42 {
 	            }
 	        }
 
-	        System.out.println("Ciudad con mayor participación: " + ciudades[pos] + " (" + max + " votos)");
+	        System.out.println("\nCiudad con mayor participación: " + ciudades[pos] + " (" + max + " votos)");
 	    }
 
 //case9
 	    public static void candidatoGanoTodas(String[] candidatos, String[] ciudades, int[][] votos) {
-	        System.out.println("--- CANDIDATO QUE GANÓ TODAS LAS CIUDADES ---");
-	        System.out.println();
+	        System.out.println("\n--- CANDIDATO QUE GANÓ TODAS LAS CIUDADES ---");
 	        boolean encontrado = false;
 
 	        for (int fila = 0; fila < candidatos.length; fila++) {
@@ -268,7 +246,7 @@ public class ejercicio42 {
 	            }
 	        }
 
-	        System.out.println("Diferencia entre 1º y 2º: " + (max1 - max2) + " votos");
+	        System.out.println("\nDiferencia entre 1º y 2º: " + (max1 - max2) + " votos");
 	    }
 	    
 //MÉTODOS AUXILIARES
