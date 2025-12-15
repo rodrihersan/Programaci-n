@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 
 public class ejercicio12 {
 	
-	public static int leerInt() throws IOException {
+	public static int leerInt() throws NumberFormatException, IOException {
 		 
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 		int num = 0;
@@ -39,7 +39,7 @@ public class ejercicio12 {
 	}
 	
 //--------------------
-	public static double leerDouble() throws IOException{
+	public static double leerDouble() throws NumberFormatException, IOException{
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 		double numero =0;
 		boolean valido=false;
@@ -57,7 +57,7 @@ public class ejercicio12 {
 		}
 
 //--------------------		
-	public static double leerDoublePositivo() throws IOException {
+	public static double leerDoublePositivo() throws NumberFormatException, IOException {
         double numero = leerDouble();
         while (numero < 0) {
         	System.err.print("No puedes introducir un número negativo.");
@@ -81,7 +81,7 @@ public class ejercicio12 {
 	}
 	
 //----------	
-	public static String leerLinea() throws IOException {
+	public static String leerLinea() throws NumberFormatException, IOException {
 		
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 	    String texto;
