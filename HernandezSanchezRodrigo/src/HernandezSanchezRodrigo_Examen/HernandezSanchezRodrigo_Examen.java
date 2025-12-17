@@ -17,7 +17,7 @@ public class HernandezSanchezRodrigo_Examen {
 					valido = true;
 				} catch (NumberFormatException e) {
 					System.err.print("ERROR. ");
-					System.out.println("Introduce un número válido: ");
+					System.out.println("Introduce un nï¿½mero vï¿½lido: ");
 				}
 			}
 			return num;
@@ -28,7 +28,7 @@ public class HernandezSanchezRodrigo_Examen {
 		    int numero = leerInt();
 		    while (numero < 0) {
 		        System.err.print("ERROR. ");
-		        System.out.println("El número no puede ser negativo. Intentalo de nuevo: ");
+		        System.out.println("El nï¿½mero no puede ser negativo. Intentalo de nuevo: ");
 		        numero = leerInt();
 		    }
 		    return numero;
@@ -46,7 +46,7 @@ public class HernandezSanchezRodrigo_Examen {
 		            valido = true;
 		        } catch (NumberFormatException e) {
 		            System.err.print("ERROR. ");
-		            System.out.println("Introduce un número válido");
+		            System.out.println("Introduce un nï¿½mero vï¿½lido");
 		        }
 		    }
 		    return numero;
@@ -56,7 +56,7 @@ public class HernandezSanchezRodrigo_Examen {
 		public static double leerDoublePositivo() throws IOException {
 	        double numero = leerDouble();
 	        while (numero < 0) {
-	        	System.err.print("No puedes introducir un número negativo.");
+	        	System.err.print("No puedes introducir un nï¿½mero negativo.");
 	        	System.out.println(" Intentalo de nuevo: ");
 	            numero = leerDouble();
 	        }
@@ -68,9 +68,9 @@ public class HernandezSanchezRodrigo_Examen {
 		    for (int i = 0; i < texto.length(); i++) {
 		        char c = texto.charAt(i);
 
-		        // comprobamos si no es letra mayúscula ni minúscula
+		        // comprobamos si no es letra mayï¿½scula ni minï¿½scula
 		        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
-		            return false; // encontramos un carácter no permitido
+		            return false; // encontramos un carï¿½cter no permitido
 		        }
 		    }
 		    return true; // todos los caracteres son letras
@@ -87,13 +87,13 @@ public class HernandezSanchezRodrigo_Examen {
 
 		        if (texto.length() == 0) {
 		            System.err.println("Debes escribir algo.");
-		            System.out.print("Inténtalo de nuevo: ");
+		            System.out.print("Intï¿½ntalo de nuevo: ");
 		            continue; // vuelve al principio del bucle
 		        }
 
 		        if (!esTextoValido(texto)) {
-		            System.err.println("El nombre solo puede contener letras, sin números ni símbolos ni espacios en blanco.");
-		            System.out.print("Inténtalo de nuevo: ");
+		            System.err.println("El nombre solo puede contener letras, sin nï¿½meros ni sï¿½mbolos ni espacios en blanco.");
+		            System.out.print("Intï¿½ntalo de nuevo: ");
 		            continue; // vuelve al principio del bucle
 		        }
 		        break; // si pasa todas las comprobaciones, salimos del bucle
@@ -111,22 +111,22 @@ public class HernandezSanchezRodrigo_Examen {
         do {
             System.out.println("\n---LA ISLA DE LAS TENTACIONES JAVA---");
             System.out.println("1. Llegada a la villa");
-            System.out.println("2. ¡Hay más imágenes!");
-            System.out.println("3. Hoguera de Confrontación");
-            System.out.println("4. La luz de la tentación");
+            System.out.println("2. ï¿½Hay mï¿½s imï¿½genes!");
+            System.out.println("3. Hoguera de Confrontaciï¿½n");
+            System.out.println("4. La luz de la tentaciï¿½n");
             System.out.println("5. Montoya, por favor");
-            System.out.print("Selecciona una opción: ");
+            System.out.print("Selecciona una opciï¿½n: ");
 
             opcion = leerIntPositivo();
 
             switch (opcion) {
                 case 1:cargaDeDatos(participantes, tentadores, tentacion);break;
                 case 2:actualizarTentacion(participantes, tentadores, tentacion);break;
-                case 3:matrizYEstadísticas(participantes, tentadores, tentacion);break;
+                case 3:matrizYEstadisticas(participantes, tentadores, tentacion);break;
                 case 4:alarma(participantes, tentadores, tentacion);break;
                 case 5:salir = true;System.out.println("Montoya, por favor\r\n"
-                		+ "Nos vemos en la próxima edición");break;
-                default:System.err.println("Opción no válida.");
+                		+ "Nos vemos en la prï¿½xima ediciï¿½n");break;
+                default:System.err.println("Opciï¿½n no vï¿½lida.");
             }
         } while (!salir);
     }
@@ -150,12 +150,12 @@ public class HernandezSanchezRodrigo_Examen {
             	tentacion[i][j] = 0;
             }
         }
-		System.out.println("¡Todos los participantes y tentadores han llegado a la villa!");
+		System.out.println("ï¿½Todos los participantes y tentadores han llegado a la villa!");
     }
 	
 //Case2
 	public static void actualizarTentacion(String[] participantes, String[] tentadores, int[][] tentacion) throws IOException {
-		System.out.println("\n--- Introducir grado tentación ---");
+		System.out.println("\n--- Introducir grado tentaciï¿½n ---");
 
 		System.out.println("Participantes");
 		for(int i=0; i<participantes.length; i++) {
@@ -166,7 +166,7 @@ public class HernandezSanchezRodrigo_Examen {
 		boolean activo;
 		do {
 			activo = true;
-			System.out.println("Introduce el índice de los participantes (0-5): ");
+			System.out.println("Introduce el ï¿½ndice de los participantes (0-5): ");
 			posParticipante = leerIntPositivo();
 			if(posParticipante<0 || posParticipante>5) {
 				System.out.println("El numero introducido no esta entre 0 y 5");
@@ -182,7 +182,7 @@ public class HernandezSanchezRodrigo_Examen {
 		boolean activo2;
 		do {
 			activo2 = true;
-			System.out.println("Introduce el índice de los tentadores (0-5): ");
+			System.out.println("Introduce el ï¿½ndice de los tentadores (0-5): ");
 			posTentador = leerIntPositivo();
 			if(posTentador<0 || posTentador>5) {
 				System.out.println("El numero introducido no esta entre 0 y 5");
@@ -196,7 +196,7 @@ public class HernandezSanchezRodrigo_Examen {
 			if(tentacion[posParticipante][posTentador] <0) {
 				System.err.println("No se puede introducir numeros negativos");
 			}else if (tentacion[posParticipante][posTentador] >100) {
-				System.err.println("Al ser un numero mayor de 100 se aplicará solamente 100");
+				System.err.println("Al ser un numero mayor de 100 se aplicarï¿½ solamente 100");
 				tentacion[posParticipante][posTentador] = 100;
 			}else {
 			System.out.println("Grado de tentacion aplicado correctamente");
@@ -209,9 +209,9 @@ public class HernandezSanchezRodrigo_Examen {
 	}
 	
 //Case3
-	public static void matrizYEstadísticas(String[] participantes, String[] tentadores, int[][] tentacion)throws IOException {
-		System.out.println("--- HOGUERA DE CONFRONTACIÓN ---");		
-		System.out.println("---MATRIZ DE TENTACIÓN---");
+	public static void matrizYEstadisticas(String[] participantes, String[] tentadores, int[][] tentacion)throws IOException {
+		System.out.println("--- HOGUERA DE CONFRONTACIï¿½N ---");		
+		System.out.println("---MATRIZ DE TENTACIï¿½N---");
 		
 		System.out.print("\t\t");
 		for(int i=0; i<tentadores.length; i++) {
@@ -239,7 +239,7 @@ public class HernandezSanchezRodrigo_Examen {
 			}
 		}
 		
-		System.out.println("El participante que más tentacion tiene es " + participantes[posConMasTentacion] + " con " 
+		System.out.println("El participante que mï¿½s tentacion tiene es " + participantes[posConMasTentacion] + " con " 
 		                            + tentacionMayor);
 		
 		int conexionMayor = -1;
@@ -263,7 +263,7 @@ public class HernandezSanchezRodrigo_Examen {
 		
 //case4 
 	public static void alarma (String[] participantes, String[] tentadores, int[][] tentacion)throws IOException {
-		System.out.println("\n--- LA LUZ DE LA TENTACIÓN ---");	
+		System.out.println("\n--- LA LUZ DE LA TENTACIï¿½N ---");	
 		System.out.println("Introduce el umbral de alarma (1-100): ");
 		int umbral = leerIntPositivo();
 		if(umbral <1 || umbral > 100) {
@@ -278,7 +278,7 @@ public class HernandezSanchezRodrigo_Examen {
 		for(int f=0; f<tentacion.length; f++) {
 			for(int c=0; c<tentacion[f].length; c++) {
 				if(tentacion[f][c] >= umbral) {
-					System.out.println("¡ALARMA! Los participantes que mas tentacion tienen son  " + participantes[f] + " y el tentador " + tentadores[c]+ " tienen un nivel de tentacion de "
+					System.out.println("ï¿½ALARMA! Los participantes que mas tentacion tienen son  " + participantes[f] + " y el tentador " + tentadores[c]+ " tienen un nivel de tentacion de "
 							+ tentacion[f][c] );
 				}else {
 					System.out.println("Noche tranquila. La isla duerme. Por ahora... :P");

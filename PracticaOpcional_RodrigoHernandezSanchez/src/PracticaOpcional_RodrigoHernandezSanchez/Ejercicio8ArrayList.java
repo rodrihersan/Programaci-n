@@ -23,7 +23,7 @@ public class Ejercicio8ArrayList {
 				valido = true;
 			} catch (NumberFormatException e) {
 				System.err.print("ERROR. ");
-				System.out.println("Introduce un número válido: ");
+				System.out.println("Introduce un nï¿½mero vï¿½lido: ");
 			}
 		}
 		return num;
@@ -34,7 +34,7 @@ public class Ejercicio8ArrayList {
 	    int numero = leerInt();
 	    while (numero < 0) {
 	        System.err.print("ERROR. ");
-	        System.out.println("El número no puede ser negativo. Intentalo de nuevo: ");
+	        System.out.println("El nï¿½mero no puede ser negativo. Intentalo de nuevo: ");
 	        numero = leerInt();
 	    }
 	    return numero;
@@ -52,7 +52,7 @@ public class Ejercicio8ArrayList {
 	            valido = true;
 	        } catch (NumberFormatException e) {
 	            System.err.print("ERROR. ");
-	            System.out.println("Introduce un número válido");
+	            System.out.println("Introduce un nï¿½mero vï¿½lido");
 	        }
 	    }
 	    return numero;
@@ -62,7 +62,7 @@ public class Ejercicio8ArrayList {
 	public static double leerDoublePositivo() throws NumberFormatException, IOException {
         double numero = leerDouble();
         while (numero < 0) {
-        	System.err.print("No puedes introducir un número negativo.");
+        	System.err.print("No puedes introducir un nï¿½mero negativo.");
         	System.out.println(" Intentalo de nuevo: ");
             numero = leerDouble();
         }
@@ -74,9 +74,9 @@ public class Ejercicio8ArrayList {
 	    for (int i = 0; i < texto.length(); i++) {
 	        char c = texto.charAt(i);
 
-	        // comprobamos si no es letra mayúscula ni minúscula
+	        // comprobamos si no es letra mayï¿½scula ni minï¿½scula
 	        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
-	            return false; // encontramos un carácter no permitido
+	            return false; // encontramos un carï¿½cter no permitido
 	        }
 	    }
 	    return true; // todos los caracteres son letras
@@ -93,13 +93,13 @@ public class Ejercicio8ArrayList {
 
 	        if (texto.length() == 0) {
 	            System.err.println("Debes escribir algo.");
-	            System.out.print("Inténtalo de nuevo: ");
+	            System.out.print("Intï¿½ntalo de nuevo: ");
 	            continue; // vuelve al principio del bucle
 	        }
 
 	        if (!esTextoValido(texto)) {
-	            System.err.println("El nombre solo puede contener letras, sin números ni símbolos ni espacios en blanco.");
-	            System.out.print("Inténtalo de nuevo: ");
+	            System.err.println("El nombre solo puede contener letras, sin nï¿½meros ni sï¿½mbolos ni espacios en blanco.");
+	            System.out.print("Intï¿½ntalo de nuevo: ");
 	            continue; // vuelve al principio del bucle
 	        }
 	        break; // si pasa todas las comprobaciones, salimos del bucle
@@ -108,60 +108,214 @@ public class Ejercicio8ArrayList {
 	}
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
-		ArrayList<Integer> nota = new ArrayList<>();
+		ArrayList<Double> nota = new ArrayList<>();
 		
 		boolean salir = false;
 	    char opcion;
 	    
 		do {
             System.out.println("\n---Ejercicio 6---");
-            System.out.println("A. Añadir calificación");
-            System.out.println("B. Eliminar una calificación por posición");
+            System.out.println("A. AÃ±adir calificacion");
+            System.out.println("B. Eliminar una calificaciï¿½n por posiciï¿½n");
             System.out.println("C. Mostrar todas las calificaciones");
             System.out.println("D. Calcular la media de las calificaciones");
-            System.out.println("E. Mostrar cuántas calificaciones son aprobados (>=5)");
-            System.out.println("F. Encontrar la calificación más alta y más baja");
-            System.out.println("G. Contar cuántas calificaciones hay por encima de la media");
-            System.out.println("H. Modificar una calificación");
+            System.out.println("E. Mostrar cuï¿½ntas calificaciones son aprobados (>=5)");
+            System.out.println("F. Encontrar la calificaciï¿½n mï¿½s alta y mï¿½s baja");
+            System.out.println("G. Contar cuï¿½ntas calificaciones hay por encima de la media");
+            System.out.println("H. Modificar una calificaciï¿½n");
             System.out.println("I. Salir");
-            System.out.print("Selecciona una opción: ");
+            System.out.print("Selecciona una opciï¿½n: ");
            
             opcion = leerLinea().toUpperCase().charAt(0);
             switch (opcion) {
                 case 'A':opcionA(nota);break;
                 case 'B':opcionB(nota);break;
-                //case 'C':opcionC(nota);break;
-                //case 'D':opcionD(nota);break;
-                //case 'E':opcionE(nota);break;
-                //case 'F':opcionF(nota);break;
-                //case 'G':opcionG(nota);break;
-                //case 'H':opcionG(nota);break;
+                case 'C':opcionC(nota);break;
+                case 'D':opcionD(nota);break;
+                case 'E':opcionE(nota);break;
+                case 'F':opcionF(nota);break;
+                case 'G':opcionG(nota);break;
+                case 'H':opcionH(nota);break;
                 case 'I':salir = true;System.out.println("adios");break;
-                default:System.err.println("Opción no válida.");
+                default:System.err.println("Opcion no valida.");
             }
         } while (!salir);
 	}
 		
-		//case1
-		public static void opcionA(ArrayList<Integer> nota) throws NumberFormatException, IOException{
-			System.out.println("\n--Añadir tarea--");
-			System.out.println("Añadir una calificacion: ");
-			int calificacion = leerIntPositivo();
+	//case1
+	public static void opcionA(ArrayList<Double> nota) throws NumberFormatException, IOException{
+			System.out.println("\n--AÃ±adir una calificacion--");
+			double calificacion;
 			boolean salida = false;
 			do {
-			if(calificacion > 10) {
-				System.err.println("No puede ser mayor de 10");
-			}else {
-			nota.add(calificacion);
-			System.out.println("Nota registrada correctamente");
-			salida = true;
+				System.out.println("AÃ±ada una calificacion: ");
+				calificacion = leerDoublePositivo();
+				
+				if(calificacion > 10) {
+					System.err.println("No puede ser mayor de 10");
+				}else {
+					nota.add(calificacion);
+					System.out.println("Nota registrada correctamente");
+					salida = true;
+					}
+				}while(!salida);
 			}
-			}while(!salida);
+		
+	//case2
+	public static void opcionB(ArrayList<Double> nota) throws NumberFormatException, IOException{
+			System.out.println("\n-- Eliminar calificaciÃ³n --");
+			
+			if (nota.isEmpty()) {
+	            System.out.println("No hay calificaciones");
+	            return;
+			}
+			
+			opcionC(nota);
+			int posicion;
+			boolean valido = false;
+			do {
+				System.out.println("Introduce una posiciÃ³n: ");
+				posicion = leerIntPositivo();
+				
+				if (posicion <= 0 || posicion > nota.size()) {
+		            System.err.println("ERROR. La posiciÃ³n no es vÃ¡lida, intÃ©ntalo de nuevo.");
+				} else {
+		            valido = true;
+				}
+			} while (!valido);
+				nota.remove(posicion - 1);
+				System.out.println("CalificaciÃ³n eliminada correctamente");
+	        }
+
+	//case3
+	public static void opcionC(ArrayList<Double> nota) {
+		    System.out.println("\n-- Mostrar calificaciones --");
+
+		    if (nota.isEmpty()) {
+		        System.out.println("No hay calificaciones");
+		        return;
+		    }
+
+		    for (int i = 0; i < nota.size(); i++) {
+		        System.out.println("CalificaciÃ³n " + (i + 1) + ": " + nota.get(i));
+		    }
+		    /*int i = 1;
+			for(double n : nota) {
+    			System.out.println("CalificaciÃ³n " + i + ": " + n);
+    			i++;
+			}*/
 		}
 		
-		//case2
-		public static void opcionB(ArrayList<Integer> nota) throws NumberFormatException, IOException{
-			
-		}
+	//case4
+	public static void opcionD(ArrayList<Double> nota) throws NumberFormatException, IOException {
+		    System.out.println("\n-- Calcular media --");
+		    
+		    if (nota.isEmpty()) {
+		        System.out.println("No hay calificaciones");
+		        return;
+		    }
+		    
+		    double suma = 0;
+		    for (double n : nota) {
+		        suma += n;
+		    }
+		    
+		    double media = suma / nota.size();
+		    System.out.println("La media de las calificaciones es: " + media);
+		    }
+		
+	//case5
+	public static void opcionE(ArrayList<Double> nota) throws NumberFormatException, IOException {
+		System.out.println("\n-- Contar aprobados --");
+		
+		if (nota.isEmpty()) {
+	        System.out.println("No hay calificaciones");
+	        return;
+	    }
+		
+		int aprobados = 0;
+	    for (double n : nota) {
+	        if (n >= 5) {
+	            aprobados++;
+	        }
+	    }
+	    
+	    System.out.println("NÃºmero de calificaciones aprobadas: " + aprobados);
 	}
-
+	
+	//case6
+	public static void opcionF(ArrayList<Double> nota) {
+		System.out.println("\n-- CalificaciÃ³n mÃ¡s alta y mÃ¡s baja --");
+		
+		 if (nota.isEmpty()) {
+		        System.out.println("No hay calificaciones");
+		        return;
+		    }
+		 
+		 double max = nota.get(0);
+		 double min = nota.get(0);
+		 for (double n : nota) {
+			 if (n > max) {
+				 max = n;
+				}
+			 if (n < min) {
+				 min = n;
+		        }
+		    }
+		 System.out.println("La calificaciÃ³n mÃ¡s alta es: " + max);
+		 System.out.println("La calificaciÃ³n mÃ¡s baja es: " + min);
+	}
+	
+	//Case7
+	public static void opcionG(ArrayList<Double> nota) {
+		System.out.println("\n-- Contar calificaciones por encima de la media --");
+		
+		if (nota.isEmpty()) {
+	        System.out.println("No hay calificaciones");
+	        return;
+	    }
+		
+		double suma = 0;
+	    for (double n : nota) {
+	        suma += n;
+	    }
+	    double media = suma / nota.size();
+	    
+	    int contador = 0;
+	    for (double n : nota) {
+	        if (n > media) {
+	            contador++;
+	        }
+	    }
+	    System.out.println("NÃºmero de calificaciones por encima de la media: " + contador);
+	}
+	
+	//case8
+	public static void opcionH(ArrayList<Double> nota) throws IOException {
+		System.out.println("-- Modificar una calificaciÃ³n --");
+		
+		if (nota.isEmpty()) {
+	        System.out.println("No hay calificaciones");
+	        return;
+	    }
+		
+		opcionC(nota);
+		int posicion;
+		do {
+			System.out.println("Introduce la posiciÃ³n de la calificaciÃ³n a modificar: ");
+			posicion = leerIntPositivo();
+	    } while (posicion <= 0 || posicion > nota.size());
+		
+		double nuevaNota;
+	    do {
+	        System.out.println("Introduce la nueva calificaciÃ³n (0-10): ");
+	        nuevaNota = leerDoublePositivo();
+	        if (nuevaNota > 10) {
+	            System.err.println("ERROR. La calificaciÃ³n no puede ser mayor que 10");
+	        }
+	    } while (nuevaNota > 10);
+	    
+	    nota.set(posicion - 1, nuevaNota);
+	    System.out.println("CalificaciÃ³n modificada correctamente");
+	}
+}
