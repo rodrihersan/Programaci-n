@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ejercicio15HashMap {
+public class Ejercicio15HashMap {
 	
 	public static int leerInt() throws NumberFormatException, IOException {
 		 
