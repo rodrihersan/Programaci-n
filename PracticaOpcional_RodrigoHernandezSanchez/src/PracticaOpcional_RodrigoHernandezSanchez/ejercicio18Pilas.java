@@ -3,112 +3,134 @@ package PracticaOpcional_RodrigoHernandezSanchez;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Stack;
-import java.io.InputStreamReader;
-import java.io.InputStreamReader;
 
 public class ejercicio18Pilas {
-	
-	public static int leerInt() throws NumberFormatException, IOException {
-		 
-		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		int num = 0;
-		boolean valido = false;
-		while (!valido) {
-			try {
-				num = Integer.parseInt(leer.readLine());
-				valido = true;
-			} catch (NumberFormatException e) {
-				System.err.print("ERROR. ");
-				System.out.println("Introduce un n�mero v�lido: ");
-			}
-		}
-		return num;
-	}
-	
-//--------------------	
-	public static int leerIntPositivo() throws IOException {
-	    int numero = leerInt();
-	    while (numero < 0) {
-	        System.err.print("ERROR. ");
-	        System.out.println("El n�mero no puede ser negativo. Intentalo de nuevo: ");
-	        numero = leerInt();
-	    }
-	    return numero;
-	}
-	
-//--------------------
-	public static double leerDouble() throws NumberFormatException, IOException{
-		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		double numero =0;
-		boolean valido=false;
-		
-		while(!valido) {
-			try {
-				numero = Double.parseDouble(leer.readLine());
-	            valido = true;
-	        } catch (NumberFormatException e) {
-	            System.err.print("ERROR. ");
-	            System.out.println("Introduce un n�mero v�lido");
-	        }
-	    }
-	    return numero;
-		}
 
-//--------------------		
-	public static double leerDoublePositivo() throws NumberFormatException, IOException {
-        double numero = leerDouble();
-        while (numero < 0) {
-        	System.err.print("No puedes introducir un n�mero negativo.");
-        	System.out.println(" Intentalo de nuevo: ");
-            numero = leerDouble();
-        }
-        return numero;
+    public static String leerLinea() throws IOException {
+        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+        String texto;
+
+        do {
+            texto = leer.readLine().trim();
+            if (texto.length() == 0) {
+                System.err.print("No puede estar vacío. Inténtalo de nuevo: ");
+            }
+        } while (texto.length() == 0);
+
+        return texto;
     }
-	
-//--------------------			
-	public static boolean esTextoValido(String texto) {
-	    for (int i = 0; i < texto.length(); i++) {
-	        char c = texto.charAt(i);
 
-	        // comprobamos si no es letra may�scula ni min�scula
-	        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
-	            return false; // encontramos un car�cter no permitido
-	        }
-	    }
-	    return true; // todos los caracteres son letras
-	}
-	
-//----------	
-	public static String leerLinea() throws NumberFormatException, IOException {
-		
-		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-	    String texto;
+    public static void main(String[] args) throws IOException {
 
-	    do {
-	        texto = leer.readLine().trim(); // quitamos espacios al inicio y al final
+        Stack<String> historial = new Stack<>();
+        boolean salir = false;
 
-	        if (texto.length() == 0) {
-	            System.err.println("Debes escribir algo.");
-	            System.out.print("Int�ntalo de nuevo: ");
-	            continue; // vuelve al principio del bucle
-	        }
+        do {
+            System.out.println("\n=== HISTORIAL DE NAVEGACIÓN ===");
+            System.out.println("1. Visitar nueva página");
+            System.out.println("2. Volver a página anterior");
+            System.out.println("3. Ver página actual");
+            System.out.println("4. Mostrar todo el historial");
+            System.out.println("5. Ir a página inicial");
+            System.out.println("6. Contar páginas en el historial");
+            System.out.println("7. Buscar una URL");
+            System.out.println("8. Salir");
+            System.out.print("Elige una opción: ");
 
-	        if (!esTextoValido(texto)) {
-	            System.err.println("El nombre solo puede contener letras, sin n�meros ni s�mbolos ni espacios en blanco.");
-	            System.out.print("Int�ntalo de nuevo: ");
-	            continue; // vuelve al principio del bucle
-	        }
-	        break; // si pasa todas las comprobaciones, salimos del bucle
-	    } while (true);
-	    return texto;
-	}
+            int opcion = Integer.parseInt(leerLinea());
 
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		
+            switch (opcion) {
+                case 1: opcion1(historial); break;
+                case 2: opcion2(historial); break;
+                case 3: opcion3(historial); break;
+                case 4: opcion4(historial); break;
+                case 5: opcion5(historial); break;
+                case 6: opcion6(historial); break;
+                case 7: opcion7(historial); break;
+                case 8: salir = true; System.out.println("¡Hasta luego!"); break;
+                default: System.err.println("Opción no válida");
+            }
 
-	}
+        } while (!salir);
+    }
 
+    //case1
+    public static void opcion1(Stack<String> historial) throws IOException {
+        System.out.print("Introduce la URL: ");
+        String url = leerLinea();
+        historial.push(url);
+        System.out.println("Página visitada: " + url);
+    }
+
+    //case2
+    public static void opcion2(Stack<String> historial) {
+        System.out.println("-- Volver a página anterior --");
+
+        if (historial.isEmpty()) {
+            System.out.println("No hay páginas en el historial");
+            return;
+        }
+
+        String pagina = historial.pop();
+        System.out.println("Has vuelto desde: " + pagina);
+    }
+
+    //case3
+    public static void opcion3(Stack<String> historial) {
+        System.out.println("-- Página actual --");
+
+        if (historial.isEmpty()) {
+            System.out.println("No hay página actual");
+            return;
+        }
+
+        System.out.println("Página actual: " + historial.peek());
+    }
+
+    //case4
+    public static void opcion4(Stack<String> historial) {
+        System.out.println("-- Historial completo --");
+
+        if (historial.isEmpty()) {
+            System.out.println("Historial vacío");
+            return;
+        }
+
+        for (int i = historial.size() - 1; i >= 0; i--) {
+            System.out.println(historial.get(i));
+        }
+    }
+
+    //case5
+    public static void opcion5(Stack<String> historial) {
+        historial.clear();
+        System.out.println("Has vuelto a la página inicial");
+    }
+
+    //case6
+    public static void opcion6(Stack<String> historial) {
+        System.out.println("Total de páginas visitadas: " + historial.size());
+    }
+
+    //case7
+    public static void opcion7(Stack<String> historial) throws IOException {
+        System.out.print("Introduce la URL a buscar: ");
+        String url = leerLinea();
+
+        boolean encontrada = false;
+
+        for (String pagina : historial) {
+            if (pagina.equalsIgnoreCase(url)) {
+                encontrada = true;
+                break;
+            }
+        }
+
+        if (encontrada) {
+            System.out.println("La URL ha sido visitada");
+        } else {
+            System.out.println("La URL NO ha sido visitada");
+        }
+    }
 }

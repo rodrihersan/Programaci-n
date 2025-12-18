@@ -4,11 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
-import java.io.InputStreamReader;
-import java.io.InputStreamReader;
 
 public class Ejercicio8ArrayList {
 	
@@ -114,17 +109,17 @@ public class Ejercicio8ArrayList {
 	    char opcion;
 	    
 		do {
-            System.out.println("\n---Ejercicio 6---");
+            System.out.println("\n---Ejercicio 8---");
             System.out.println("A. Añadir calificacion");
-            System.out.println("B. Eliminar una calificaci�n por posici�n");
+            System.out.println("B. Eliminar una calificacion por posicion");
             System.out.println("C. Mostrar todas las calificaciones");
             System.out.println("D. Calcular la media de las calificaciones");
-            System.out.println("E. Mostrar cu�ntas calificaciones son aprobados (>=5)");
-            System.out.println("F. Encontrar la calificaci�n m�s alta y m�s baja");
-            System.out.println("G. Contar cu�ntas calificaciones hay por encima de la media");
-            System.out.println("H. Modificar una calificaci�n");
+            System.out.println("E. Mostrar cuantas calificaciones son aprobados (>=5)");
+            System.out.println("F. Encontrar la calificacion mas alta y mas baja");
+            System.out.println("G. Contar cuantas calificaciones hay por encima de la media");
+            System.out.println("H. Modificar una calificacion");
             System.out.println("I. Salir");
-            System.out.print("Selecciona una opci�n: ");
+            System.out.print("Selecciona una opcion: ");
            
             opcion = leerLinea().toUpperCase().charAt(0);
             switch (opcion) {
@@ -157,9 +152,9 @@ public class Ejercicio8ArrayList {
 					nota.add(calificacion);
 					System.out.println("Nota registrada correctamente");
 					salida = true;
-					}
-				}while(!salida);
-			}
+				}
+			}while(!salida);
+	}
 		
 	//case2
 	public static void opcionB(ArrayList<Double> nota) throws NumberFormatException, IOException{
@@ -185,12 +180,11 @@ public class Ejercicio8ArrayList {
 			} while (!valido);
 				nota.remove(posicion - 1);
 				System.out.println("Calificación eliminada correctamente");
-	        }
+	 }
 
 	//case3
 	public static void opcionC(ArrayList<Double> nota) {
 		    System.out.println("\n-- Mostrar calificaciones --");
-
 		    if (nota.isEmpty()) {
 		        System.out.println("No hay calificaciones");
 		        return;
@@ -204,17 +198,17 @@ public class Ejercicio8ArrayList {
     			System.out.println("Calificación " + i + ": " + n);
     			i++;
 			}*/
-		}
+	}
 		
 	//case4
 	public static void opcionD(ArrayList<Double> nota) throws NumberFormatException, IOException {
 		    System.out.println("\n-- Calcular media --");
 		    
 		    if (nota.isEmpty()) {
-		        System.out.println("No hay calificaciones");
-		        return;
+		    	System.out.println("No hay calificaciones");
+		    	return;
 		    }
-		    
+
 		    double suma = 0;
 		    for (double n : nota) {
 		        suma += n;
@@ -222,12 +216,11 @@ public class Ejercicio8ArrayList {
 		    
 		    double media = suma / nota.size();
 		    System.out.println("La media de las calificaciones es: " + media);
-		    }
+	}
 		
 	//case5
 	public static void opcionE(ArrayList<Double> nota) throws NumberFormatException, IOException {
-		System.out.println("\n-- Contar aprobados --");
-		
+		System.out.println("\n-- Contar aprobados --");		
 		if (nota.isEmpty()) {
 	        System.out.println("No hay calificaciones");
 	        return;
@@ -238,38 +231,35 @@ public class Ejercicio8ArrayList {
 	        if (n >= 5) {
 	            aprobados++;
 	        }
-	    }
-	    
+	    }	    
 	    System.out.println("Número de calificaciones aprobadas: " + aprobados);
 	}
 	
 	//case6
 	public static void opcionF(ArrayList<Double> nota) {
-		System.out.println("\n-- Calificación más alta y más baja --");
-		
+		System.out.println("\n-- Calificación más alta y más baja --");		
 		 if (nota.isEmpty()) {
 		        System.out.println("No hay calificaciones");
 		        return;
-		    }
+		 }
 		 
 		 double max = nota.get(0);
 		 double min = nota.get(0);
 		 for (double n : nota) {
 			 if (n > max) {
 				 max = n;
-				}
+			 }
 			 if (n < min) {
 				 min = n;
-		        }
-		    }
+		     }
+		 }
 		 System.out.println("La calificación más alta es: " + max);
 		 System.out.println("La calificación más baja es: " + min);
 	}
 	
 	//Case7
 	public static void opcionG(ArrayList<Double> nota) {
-		System.out.println("\n-- Contar calificaciones por encima de la media --");
-		
+		System.out.println("\n-- Contar calificaciones por encima de la media --");		
 		if (nota.isEmpty()) {
 	        System.out.println("No hay calificaciones");
 	        return;
@@ -293,7 +283,6 @@ public class Ejercicio8ArrayList {
 	//case8
 	public static void opcionH(ArrayList<Double> nota) throws IOException {
 		System.out.println("-- Modificar una calificación --");
-		
 		if (nota.isEmpty()) {
 	        System.out.println("No hay calificaciones");
 	        return;
@@ -314,7 +303,6 @@ public class Ejercicio8ArrayList {
 	            System.err.println("ERROR. La calificación no puede ser mayor que 10");
 	        }
 	    } while (nuevaNota > 10);
-	    
 	    nota.set(posicion - 1, nuevaNota);
 	    System.out.println("Calificación modificada correctamente");
 	}
