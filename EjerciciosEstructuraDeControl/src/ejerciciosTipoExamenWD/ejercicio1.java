@@ -80,9 +80,9 @@ public class ejercicio1 {
 	                double precioDescuento = precioConIVA - descuento;
 	                System.out.println(unidades + " unidades: " + precioSinIVA + "€ (con IVA: " +
                             precioConIVA + "€) Precio con descuento: " + precioDescuento + "€ (Descuento: -" + descuento + "€)");
-     } else {
-         System.out.println(unidades + " unidades: " + precioSinIVA + "€ (con IVA: " + precioConIVA + "€)");
-					}
+				} else {
+					System.out.println(unidades + " unidades: " + precioSinIVA + "€ (con IVA: " + precioConIVA + "€)");
+				}
 			}
 			break;
 		case 5:
