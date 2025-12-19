@@ -217,15 +217,11 @@ public class ejercicio9 {
 
 
                     if (tiempo == 0) {
-
                         System.out.println("Pedido cancelado");
-
                         cancelados++;
 
                     } else {
-
                         completados++;
-
                         tiempoTotal += tiempo;
 
                     }
