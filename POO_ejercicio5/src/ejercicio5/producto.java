@@ -21,7 +21,7 @@ public class producto {
 		stock = Integer.parseInt(leer.readLine());
 	}
 	
-	public void comprobarStock() {
+	/*public void comprobarStock() {
 		if (stock > 0) {
 			System.out.println("Hay stock de este producto");
 		}else if (stock == 0) {
@@ -29,22 +29,27 @@ public class producto {
 		}else {
 			System.out.println("El valor introducio no es valido");
 		}
-	}
+	} OPCION1 (Rodrigo)*/
 	
-	public void realizarVenta() throws NumberFormatException, IOException {
-		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Indique el numero de productos vendidos");
-		int productosVendidos = Integer.parseInt(leer.readLine());
-		
-	}
+	public boolean comprobarStock() {
+		if (stock > 0) {
+			return true;
+		}else {
+			return false;
+		}
+	} //OPCION2 (Adri)
 	
-	public void realizarVenta(int productoVendido) {
-		if (stock >= productoVendido) {
-			stock = stock - productoVendido;
-			System.out.println("El nuevo stock es:" + stock);
+	
+	public void venta(int cantVendido) {
+		if (comprobarStock() == true && stock >= cantVendido) {
+			stock = stock - cantVendido;
 		} else {
-			System.out.println("No se puede retirar el producto, no hay stock suficiente");
+			System.out.println("No se puede vender el producto, no hay stock suficiente");
 		}
 	}
 	
-}
+	public int reabastecer(int cantAñadida) {
+		return stock = stock + cantAñadida;
+		}
+	}
+	
