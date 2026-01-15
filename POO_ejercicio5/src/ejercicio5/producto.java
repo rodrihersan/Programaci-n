@@ -1,0 +1,50 @@
+package ejercicio5;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class producto {
+	private int id;
+	private String nombre;
+	private double precio;
+	private int stock;
+	
+	public void pedirDatos(int id) throws IOException {
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		this.id = id;
+		System.out.print("Introduce el nombre del prodcuto: ");
+		nombre = leer.readLine();
+		System.out.print("Introduce el precio: ");
+		precio = Double.parseDouble(leer.readLine());
+		System.out.print("Introduce el stock: ");
+		stock = Integer.parseInt(leer.readLine());
+	}
+	
+	public void comprobarStock() {
+		if (stock > 0) {
+			System.out.println("Hay stock de este producto");
+		}else if (stock == 0) {
+			System.out.println("No queda nada de stock de este producto");
+		}else {
+			System.out.println("El valor introducio no es valido");
+		}
+	}
+	
+	public void realizarVenta() throws NumberFormatException, IOException {
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Indique el numero de productos vendidos");
+		int productosVendidos = Integer.parseInt(leer.readLine());
+		
+	}
+	
+	public void realizarVenta(int productoVendido) {
+		if (stock >= productoVendido) {
+			stock = stock - productoVendido;
+			System.out.println("El nuevo stock es:" + stock);
+		} else {
+			System.out.println("No se puede retirar el producto, no hay stock suficiente");
+		}
+	}
+	
+}
