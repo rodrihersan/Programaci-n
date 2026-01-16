@@ -51,5 +51,15 @@ public class producto {
 	public int reabastecer(int cantAñadida) {
 		return stock = stock + cantAñadida;
 		}
+
+
+	public int getId() {
+		return id;
 	}
+
+	@Override
+	public String toString() {
+		return "producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + "]";
+	}
+}
 	
