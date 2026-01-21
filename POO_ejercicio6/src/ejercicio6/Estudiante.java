@@ -1,14 +1,13 @@
 package ejercicio6;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-	public class estudiante {
-		private int id;
-		private String nombre;
-		private int edad;
-		private int curso;
-		private float notaMedia;
+public class Estudiante {
+	private int id;
+	private String nombre;
+	private int edad;
+	private int curso;
+	private float notaMedia;
 
 	public void pedirDatos(int id) {
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
@@ -73,10 +72,10 @@ import java.io.InputStreamReader;
 	
 	public void mostrarDatos() {
 		System.out.println("ESTUDIANTE " + id);
-		System.out.println("Nombre: " + nombre);
-		System.out.println("Edad: " + edad);
-		System.out.println("Curso: " + curso);
-		System.out.println("Nota Media: " + notaMedia);
+		System.out.println("\tNombre: " + nombre);
+		System.out.println("\tEdad: " + edad);
+		System.out.println("\tCurso: " + curso);
+		System.out.println("\tNota Media: " + notaMedia);
 	}
 
 	public int getId() {

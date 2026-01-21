@@ -1,4 +1,4 @@
-package HernandezSanchezRodrigo;
+package Recuperacion;
 
 import java.io.BufferedReader;
 import java.io.IOException;

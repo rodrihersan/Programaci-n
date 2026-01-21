@@ -1,17 +1,16 @@
 package ejercicio6;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class main {
+public class Principal {
 	static BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 
-		ArrayList<estudiante> estudiantes = new ArrayList<estudiante>();
+		ArrayList<Estudiante> estudiantes = new ArrayList<Estudiante>();
 
 		boolean salir = false;
 
@@ -57,13 +56,13 @@ public class main {
 		} while (!salir);
 	}
 
-	private static void registrarEstudiantes(ArrayList<estudiante> estudiantes) throws IOException {
+	private static void registrarEstudiantes(ArrayList<Estudiante> estudiantes) throws IOException {
 		boolean parar = false;
 		System.out.println("--Registrar estudiantes--");
 
 		while (parar == false) {
 			System.out.println("Introduce los datos del estudiante " + (estudiantes.size() + 1));
-			estudiantes.add(new estudiante());
+			estudiantes.add(new Estudiante());
 			estudiantes.getLast().pedirDatos(estudiantes.size());
 
 			System.out.println("¿Desea introducir otro estudiante? (S/N)");
@@ -74,14 +73,14 @@ public class main {
 
 	}
 
-	private static void mostrarDatos(ArrayList<estudiante> estudiantes) {
+	private static void mostrarDatos(ArrayList<Estudiante> estudiantes) {
 		System.out.println("--Listado estudiantes--");
-		for (estudiante e : estudiantes) {
+		for (Estudiante e : estudiantes) {
 			e.mostrarDatos();
 		}
 	}
 
-	private static void buscarPorId(ArrayList<estudiante> estudiantes) {
+	private static void buscarPorId(ArrayList<Estudiante> estudiantes) {
 		System.out.println("--Buscar Por Id--");
 
 		int id = -1;
@@ -110,9 +109,9 @@ public class main {
 		}
 	}
 
-	private static void mostrarAprobados(ArrayList<estudiante> estudiantes) {
+	private static void mostrarAprobados(ArrayList<Estudiante> estudiantes) {
 		System.out.println("-- Estudiantes aprobados --");
-		for (estudiante e : estudiantes) {
+		for (Estudiante e : estudiantes) {
 			if (e.notaMediaAprobada()) {
 				System.out.println(e.getNombre());
 			}
@@ -120,7 +119,7 @@ public class main {
 
 	}
 
-	private static void buscarPorCategoria(ArrayList<estudiante> estudiantes) {
+	private static void buscarPorCategoria(ArrayList<Estudiante> estudiantes) {
 		System.out.println("-- Buscar por categoria --");
 		boolean todoOk = false;
 		String categoria = "";
@@ -146,7 +145,7 @@ public class main {
 
 		} while (todoOk == false);
 		
-		for (int i = 0; i < estudiantes.size() ; i++) {
+		for (int i = 0; i < estudiantes.size(); i++) {
 			if (estudiantes.get(i).notaEscrita().equalsIgnoreCase(categoria)) {
 				System.out.println(estudiantes.get(i).getNombre());
 				enc = true;
@@ -159,9 +158,9 @@ public class main {
 
 	}
 	
-	private static void mostrarAlumnosQuePasen(ArrayList<estudiante> estudiantes) {
+	private static void mostrarAlumnosQuePasen(ArrayList<Estudiante> estudiantes) {
 		System.out.println("-- Estudiantes que pasan de curso o titulan --");
-		for (estudiante e : estudiantes) {
+		for (Estudiante e : estudiantes) {
 			if (e.notaMediaAprobada()) {
 				if(e.getCurso() == 1)
 					System.out.println(e.getNombre() + " pasa de curso a 2º de DAW");
@@ -171,4 +170,6 @@ public class main {
 		}
 		
 	}
+
+
 }
