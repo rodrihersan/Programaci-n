@@ -26,25 +26,25 @@ public class ArticuloCodigo {
         stock = Integer.parseInt(leer.readLine());
     }
 	
-	 public static int generarCodigoUnico(ArrayList<ArticuloCodigo> articulos) {
-	        Random rand = new Random();
-	        int cod;
-	        boolean repetido;
+	public static int generarCodigoUnico(ArrayList<ArticuloCodigo> articulos) {
+	    Random rand = new Random();
+	    int cod;
+	    boolean repetido;
 
-	        do {
-	            cod = rand.nextInt(100) + 1;
-	            repetido = false;
+	    do {
+	        cod = rand.nextInt(100) + 1;
+	        repetido = false;
 
-	            for (ArticuloCodigo a : articulos) {
-	                if (a.getCodigo() == cod) {
-	                    repetido = true;
-	                    break;
-	                }
+	        for (int i = 0; i < articulos.size(); i++) {
+	            if (articulos.get(i).getCodigo() == cod) {
+	                repetido = true;
+	                break;
 	            }
-	        } while (repetido);
+	        }
+	    } while (repetido);
 
-	        return cod;
-	    }
+	    return cod;
+	}
 	 
 	 public boolean vender(int cantidad) {
 	        if (stock >= cantidad) {
