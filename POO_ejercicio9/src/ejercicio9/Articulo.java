@@ -1,6 +1,9 @@
+package ejercicio9;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Articulo {
@@ -9,7 +12,7 @@ public class Articulo {
 	private float precio;
 	private int stock;
 
-	public void pedirDatos(Articulo[] articulos, int pos) {
+	public void pedirDatos(ArrayList<Articulo> articulos) {
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 		Random rand = new Random();
 
@@ -17,7 +20,7 @@ public class Articulo {
 		do {
 			idGenerado = rand.nextInt(30) + 1;
 			System.err.println("He generado el numero: " + idGenerado);
-		} while (estaRepetido(articulos, pos, idGenerado));
+		} while (estaRepetido(articulos, idGenerado));
 		System.out.println("Asignado el id " + idGenerado);
 		id = idGenerado;
 
@@ -26,7 +29,7 @@ public class Articulo {
 
 			try {
 
-				System.out.print("Introduce el nombre del producto: ");
+				System.out.print("Introduce el nombre del estudiante: ");
 				nombre = leer.readLine();
 
 				do {
@@ -53,9 +56,9 @@ public class Articulo {
 
 	}
 
-	private boolean estaRepetido(Articulo[] articulos, int pos, int idGenerado) {
-		for (int i = 0; i < (pos - 1); i++) {
-			if (articulos[i].getId() == idGenerado) {
+	private boolean estaRepetido(ArrayList<Articulo> articulos, int idGenerado) {
+		for (int i = 0; i < (articulos.size() - 1); i++) {
+			if (articulos.get(i).getId() == idGenerado) {
 				System.err.println("El numero esta repetido");
 				return true;
 			}
@@ -79,14 +82,13 @@ public class Articulo {
 		System.out.println("\tNOMBRE: " + nombre);
 		System.out.println("\tPRECIO: " + precio + " €");
 		System.out.println("\tSTOCK: " + stock);
-		System.out.println("--------------------------------------");
+		
 		
 	}
 
 	public int getId() {
 		return id;
 	}
-	
 	public String getNombre() {
 		return nombre;
 	}
@@ -103,4 +105,5 @@ public class Articulo {
 		return precio;
 	}
 
+	
 }

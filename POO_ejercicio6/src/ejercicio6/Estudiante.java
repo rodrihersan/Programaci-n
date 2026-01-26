@@ -72,10 +72,10 @@ public class Estudiante {
 	
 	public void mostrarDatos() {
 		System.out.println("ESTUDIANTE " + id);
-		System.out.println("\tNombre: " + nombre);
-		System.out.println("\tEdad: " + edad);
-		System.out.println("\tCurso: " + curso);
-		System.out.println("\tNota Media: " + notaMedia);
+		System.out.println("Nombre: " + nombre);
+		System.out.println("Edad: " + edad);
+		System.out.println("Curso: " + curso);
+		System.out.println("Nota Media: " + notaMedia);
 	}
 
 	public int getId() {
