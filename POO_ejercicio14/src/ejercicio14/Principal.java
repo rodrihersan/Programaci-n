@@ -37,30 +37,22 @@ public class Principal {
 
 
 			switch (opcion) {
-			case 1:
-				registrarEstudiante(alumnos);
-				break;
-			case 2:
-				añadirNota(alumnos);
-				break;
-			case 3:
-
-				break;
-			case 4:
-
-				break;
-			case 5:
-
-				break;
-			case 6:
-
-				break;
-			case 7:
-				System.out.println("Saliendo...");
-				salir = true;
-				break;
-			default:
-				System.out.println("Opcion no valida");
+			
+			case 1:registrarEstudiante(alumnos);break;
+			
+			case 2:añadirNota(alumnos);break;
+			
+			case 3:verCalificaciones(alumnos);break;
+			
+			case 4:calcularMedia(alumnos);break;
+			
+			case 5:alumnoBrillante(alumnos);break;
+			
+			case 6:alertaSuspensos(alumnos);break;
+			
+			case 7:System.out.println("Saliendo...");salir = true;break;
+			
+			default:System.out.println("Opcion no valida");
 			}
 
 		} while (!salir);
@@ -98,5 +90,84 @@ public class Principal {
 			System.out.println("No se ha encontrado el alumno");
 		
 	}
+	
+	private static void verCalificaciones(ArrayList<Alumno> alumnos) {
+		boolean datosOK = false;
+		int idABuscar = -1;
+		while (!datosOK) {
+			try {
+				System.out.println("Introduce el ID del estudiante a añadir una nota: ");
+				idABuscar = Integer.parseInt(LEER.readLine());
+			} catch (NumberFormatException | IOException e) {
+				e.printStackTrace();
+			}
+			datosOK = true;
+		}
+		
+		boolean enc = false;
+		for(Alumno alumno: alumnos) {
+			if(alumno.getId() == idABuscar) {
+				alumno.verCalificaciones();
+				enc = true;
+			}
+		}
+		if(!enc)
+			System.out.println("No se ha encontrado el alumno");
 
+	}
+	
+	private static void calcularMedia(ArrayList<Alumno> alumnos) {
+		boolean datosOK = false;
+		int idABuscar = -1;
+		while (!datosOK) {
+			try {
+				System.out.println("Introduce el ID del estudiante a añadir una nota: ");
+				idABuscar = Integer.parseInt(LEER.readLine());
+			} catch (NumberFormatException | IOException e) {
+				e.printStackTrace();
+			}
+			datosOK = true;
+		}
+		
+		boolean enc = false;
+		for(Alumno alumno: alumnos) {
+			if(alumno.getId() == idABuscar) {
+				alumno.mostrarMedia();
+				enc = true;
+			}
+		}
+		if(!enc)
+			System.out.println("No se ha encontrado el alumno");
+
+	}
+	
+	private static void alumnoBrillante(ArrayList<Alumno> alumnos) {
+		double notaMediaMaxima = -1;
+		Alumno alumnoBrillante = null;
+		for(Alumno alumno:alumnos) {
+			if(alumno.devolverMedia()> notaMediaMaxima) {
+				notaMediaMaxima = alumno.devolverMedia();
+				alumnoBrillante = alumno;
+			}
+		}
+		
+		System.out.println("El alumno brillante es: " + alumnoBrillante.toString());
+	}
+	
+	private static void alertaSuspensos(ArrayList<Alumno> alumnos) {
+		
+		for(int i=0; i<alumnos.size(); i++) {
+			
+			double[] notasAlumno = alumnos.get(i).getNotas();
+			boolean haySuspenso = false;
+			for(int j = 0; j< alumnos.get(i).getNumNotas();j++) {
+				if(notasAlumno[i] < 5) {
+					haySuspenso = true;
+				}
+			}
+			if(haySuspenso) {
+				System.out.println("El alumno " + alumnos.get(i).getNombre() + " esta suspenso");
+			}
+		}
+	}
 }

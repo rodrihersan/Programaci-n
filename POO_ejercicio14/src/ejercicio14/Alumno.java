@@ -84,9 +84,70 @@ public class Alumno {
 		return false;
 
 	}
-
+	
+	public void verCalificaciones() {
+		System.out.println("Mostrando notas de " + nombre);
+		
+		double notaMinima = 11;
+		double notaMaxima = -1;
+		
+		if(numNotas > 0) {
+			for(int i =0; i<= numNotas; i++) {
+				System.out.println(notas[i]+" , ");
+				if(notas[i] < notaMinima) 
+					notaMinima = notas[i];
+				if(notas[i] > notaMaxima)
+					notaMaxima = notas[i];
+			}
+			System.out.println("");
+			System.out.println("Nota maxima "+ notaMaxima);
+			System.out.println("Nota minima "+ notaMinima);
+		}else {
+			System.out.println("El alumno " + nombre + "no tiene notas aún");
+		}
+	}
+	
+	public void mostrarMedia() {
+		if(numNotas > 0) {
+			double media = 0;
+			for(int i=0; i<numNotas; i++) {
+				media = media+notas[i];
+			}
+			media=media/numNotas;
+			System.out.println("La media es: "+media);
+		}else {
+			System.out.println("El alumno "+nombre+ "no tiene notas aún para hacer la media");
+		}
+	}
+	
+	public double devolverMedia() {
+		if(numNotas > 0) {
+			double media = 0;
+			for(int i=0; i<numNotas; i++) {
+				media = media+notas[i];
+			}
+			return media;
+		}else {
+			return -1;
+		}
+	}
+	
+	
+	
 	public int getId() {
 		return id;
+	}
+	
+	public double[] getNotas() {
+		return notas;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public int getNumNotas() {
+		return numNotas;
 	}
 	
 }
