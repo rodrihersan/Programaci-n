@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class Principal {
 	static BufferedReader LEER = new BufferedReader(new InputStreamReader(System.in));
-	static Factura[] facturas = new Factura[10]; // Array fijo de 10 objetos
+	static Factura[] facturas = new Factura[10];
 	static int contadorFacturas = 0;
 	
 	public static String leerLinea() throws IOException {
@@ -15,20 +15,20 @@ public class Principal {
 		    String texto;
 	
 		    do {
-		        texto = leer.readLine().trim(); // quitamos espacios al inicio y al final
+		        texto = leer.readLine().trim();
 	
 		        if (texto.length() == 0) {
 		            System.err.println("Debes escribir algo.");
 		            System.out.print("Inténtalo de nuevo: ");
-		            continue; // vuelve al principio del bucle
+		            continue;
 		        }
 	
 		        if (!esTextoValido(texto)) {
 		            System.err.println("El nombre solo puede contener letras, sin números ni símbolos ni espacios en blanco.");
 		            System.out.print("Inténtalo de nuevo: ");
-		            continue; // vuelve al principio del bucle
+		            continue;
 		        }
-		        break; // si pasa todas las comprobaciones, salimos del bucle
+		        break;
 		    } while (true);
 		    return texto;
 		}
@@ -37,12 +37,12 @@ public class Principal {
 	    for (int i = 0; i < texto.length(); i++) {
 	        char c = texto.charAt(i);
 
-	        // comprobamos si no es letra mayúscula ni minúscula
+	       
 	        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
-	            return false; // encontramos un carácter no permitido
+	            return false;
 	        }
 	    }
-	    return true; // todos los caracteres son letras
+	    return true;
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -105,6 +105,7 @@ public class Principal {
 		}
 		System.out.println("Factura no encontrada.");
 	}
+	
 
 	private static void verTotal() {
 		int num = pedirInt("Introduce nº factura: ");
@@ -156,7 +157,7 @@ public class Principal {
 			System.out.print(letra);
 			String entrada = LEER.readLine();
 			if (entrada.length() > 0) {
-				return entrada.charAt(0); // Cogemos la primera letra
+				return entrada.charAt(0);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

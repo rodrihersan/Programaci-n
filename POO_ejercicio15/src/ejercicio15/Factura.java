@@ -7,78 +7,95 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Factura {
-	private int numero;
-	private String cliente;
-	private String[] conceptos = new String[10];
-	private double[] importes = new double[10];
-	private int numConceptos;
-	private final double IVA = 0.21;
-	
-	public void pedirDatos(int siguienteNumero) {
-		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		this.numero = siguienteNumero; // Secuencial automático
+	private int numero; // número de factura
+    private String cliente;
+    private String[] conceptos = new String[10]; // máximo 10 conceptos
+    private double[] precios = new double[10];
+    private int numConceptos = 0; // contador de conceptos añadidos
+    
+    public void pedirDatos(int numeroFactura) {
+        this.numero = numeroFactura; // número automático
+
+        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.print("Introduce el nombre del cliente: ");
+            cliente = leer.readLine();
+            System.out.println("Factura nº " + numero + " creada para: " + cliente);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void añadirConcepto() {
+        if (numConceptos >= conceptos.length) {
+            System.out.println("No se pueden añadir más conceptos.");
+            return;
+        }
+
+        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            System.out.print("Introduce el concepto: ");
+            conceptos[numConceptos] = leer.readLine();
+            System.out.print("Introduce el precio: ");
+            precios[numConceptos] = Double.parseDouble(leer.readLine());
+            numConceptos++;
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Error al añadir concepto.");
+        }
+    }
+
+    public void mostrarDesglose() {
+        System.out.println("Factura nº " + numero + " - Cliente: " + cliente);
+        for (int i = 0; i < numConceptos; i++) {
+            System.out.println(conceptos[i] + ": " + precios[i] + "€");
+        }
+    }
+
+    public double calcularTotalFinal() {
+        double total = 0;
+        for (int i = 0; i < numConceptos; i++) {
+            total += precios[i];
+        }
+        return total;
+    }
+
+	public static String leerLinea() throws IOException {
 		
-		try {
-			System.out.println("Introduce el nombre del cliente: ");
-			cliente = leer.readLine();
-			numConceptos = 0;
-			System.out.println("Factura nº " + numero + " creada para: " + cliente);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void añadirConcepto() {
-		// Validamos que el array de 10 no esté lleno
-		if (numConceptos >= 10) {
-			System.out.println("Error: La factura ya tiene los 10 conceptos máximos.");
-			return;
-		}else {
-
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		try {
-			System.out.println("Nombre del concepto:");
-			conceptos[numConceptos] = leer.readLine();
-			
-			System.out.println("Importe de " + conceptos[numConceptos] + ":");
-			importes[numConceptos] = Double.parseDouble(leer.readLine());
-
-			numConceptos++; // Incrementamos el contador de elementos llenos
-			System.out.println("Concepto añadido.");
-		} catch (NumberFormatException | IOException e) {
-			System.out.println("Error en los datos.");
-		}
-		}
+	    String texto;
+	
+	    do {
+	        texto = leer.readLine().trim();
+	
+	        if (texto.length() == 0) {
+	            System.err.println("Debes escribir algo.");
+	            System.out.print("Inténtalo de nuevo: ");
+	            continue;
+	        }
+	
+	        if (!esTextoValido(texto)) {
+	            System.err.println("El nombre solo puede contener letras, sin números ni símbolos ni espacios en blanco.");
+	            System.out.print("Inténtalo de nuevo: ");
+	            continue;
+	        }
+	        break;
+	    } while (true);
+	    return texto;
 	}
 	
-	public double calcularSubtotal() {
-		double subtotal = 0;
-		for (int i = 0; i < numConceptos; i++) {
-			subtotal += importes[i];
-		}
-		return subtotal;
+	public static boolean esTextoValido(String texto) {
+	for (int i = 0; i < texto.length(); i++) {
+	    char c = texto.charAt(i);
+	
+	   
+	    if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+	        return false;
+	    }
 	}
-
-	public double calcularIVA() {
-		return calcularSubtotal() * IVA;
-	}
-
-	public double calcularTotalFinal() {
-		return calcularSubtotal() + calcularIVA();
-	}
-
-	public void mostrarDesglose() {
-		System.out.println("--- DESGLOSE FACTURA Nº " + numero + " ---");
-		System.out.println("Cliente: " + cliente);
-		for (int i = 0; i < numConceptos; i++) {
-			System.out.println("- " + conceptos[i] + ": " + importes[i] + "€");
-		}
-		System.out.println("Subtotal: " + calcularSubtotal() + "€");
-		System.out.println("IVA (21%): " + calcularIVA() + "€");
-		System.out.println("TOTAL: " + calcularTotalFinal() + "€");
-	}
-
-	public int getNumero() {
-		return numero;
+	return true;
 	}
 }
