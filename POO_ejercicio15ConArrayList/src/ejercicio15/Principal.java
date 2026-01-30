@@ -3,10 +3,11 @@ package ejercicio15;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Principal {
 	static BufferedReader LEER = new BufferedReader(new InputStreamReader(System.in));
-	static Factura[] facturas = new Factura[10];
+	static ArrayList<Factura> facturas = new ArrayList<>();
 	static int contadorFacturas = 0;
 	
 	public static String leerLinea() throws IOException {
@@ -57,7 +58,8 @@ public class Principal {
 			System.out.println("D. Calcular total");
 			System.out.println("E. Factura más alta");
 			System.out.println("F. Resumen contable");
-			System.out.println("G. Salir");
+			System.out.println("G. Ver todas las facturas");
+			System.out.println("H. Salir");
 			
 			System.out.print("Selecciona una opción: ");
             opcion = leerLinea().toUpperCase().charAt(0);
@@ -69,15 +71,18 @@ public class Principal {
 				case 'D':verTotal();break;
 				case 'E':facturaMasAlta();break;
 				case 'F':resumenContable();break;
-				case 'G':salir = true;System.out.print("SALIENDO");break;
+				case 'G':verTodasLasFacturas(); break;
+				case 'H':salir = true;System.out.print("SALIENDO");break;
 			}
 		} while (!salir);
 	}
 	
 	private static void registrarFactura() {
-		if (contadorFacturas < 10) {
-			facturas[contadorFacturas] = new Factura();
-			facturas[contadorFacturas].pedirDatos(contadorFacturas + 1);
+		//ponemos <10 porque lo pide el ejercicio
+		if (facturas.size() < 10) {
+			Factura nuevaFactura = new Factura();
+			nuevaFactura.pedirDatos(facturas.size() + 1);
+			facturas.add(nuevaFactura);
 			contadorFacturas++;
 		} else {
 			System.out.println("No caben más facturas.");
@@ -86,7 +91,7 @@ public class Principal {
 	
 	private static void añadirConcepto() {
 		int num = pedirInt("Introduce nº factura: ");
-		for (Factura f : facturas) {
+		for (Factura f : facturas) { 
 			if (f != null && f.getNumero() == num) {
 				f.añadirConcepto();
 				return;
@@ -116,9 +121,10 @@ public class Principal {
 				System.out.println( "            - " + f.totalSinIVA()*0.21 + " € precio del IVA sobre el precio base");
 				System.out.println( "            - " + f.totalConIVA()+ " € precio total");
 				return;
+			}else {
+				System.out.println("Factura no encontrada.");
 			}
 		}
-		System.out.println("Factura no encontrada.");
 	}
 
 	private static void facturaMasAlta() {
@@ -153,5 +159,21 @@ public class Principal {
 		} catch (Exception e) {
 			return -1;
 		}
+	}
+	private static void verTodasLasFacturas() {
+	    if (facturas.isEmpty()) {
+	        System.out.println("No hay facturas registradas.");
+	    } else {
+	    	System.out.println(" --------------------------------------");
+	        System.out.println("|   LISTADO DE TODAS LAS FACTURAS     |");
+	        System.out.println(" --------------------------------------");
+	        // Usamos el bucle for-each que ya usas en tus otros métodos
+	        for (Factura f : facturas) {
+	            // f no será null porque el ArrayList no tiene huecos vacíos
+	            f.mostrarDesglose(); 
+	            System.out.println("Total con IVA: " + f.totalConIVA() + "€");
+	            System.out.println("------------------------------------");
+	        }
+	    }
 	}
 }

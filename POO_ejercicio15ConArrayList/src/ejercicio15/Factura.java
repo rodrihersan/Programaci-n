@@ -5,65 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Factura {
-	//private static int ultimoId = 0; 
-	// esto lo usaremos si en algun momento se llega a borrar la factura								
-	// de esta forma si borramos factura numero 3, y creamos otra, sera la numero 4, y no la numero 3.
-	
-	/*public Factura() {
-        ultimoId++;          // Cada vez que nace una factura, el contador sube
-        this.numero = ultimoId; // Esta factura se queda con el valor actual
-    }
-    public void pedirDatos() { // Ya no necesita recibir el número por parámetro
-        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            System.out.print("Introduce el nombre del cliente: ");
-            this.cliente = leer.readLine();
-            System.out.println("Factura nº " + numero + " creada para: " + cliente);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    // ... el resto de tus métodos (añadirConcepto, etc.) se quedan igual
-}
-
-/*CLASE PRINCIAPAL
- 	private static void registrarFactura() {
-	    if (facturas.size() < 10) {
-	        // 1. Al hacer 'new', la factura ya se pone su propio número automáticamente
-	        Factura nueva = new Factura(); 
-	        
-	        // 2. Pedimos los datos (ya no le pasamos el contadorFacturas + 1)
-	        nueva.pedirDatos(); 
-	        
-	        // 3. La guardamos en el ArrayList
-	        facturas.add(nueva);
-	        
-	        System.out.println("Guardada correctamente.");
-	    } else {
-	        System.out.println("No caben más facturas.");
-	    }
-	}
-	
-	
-	private static void borrarFactura() { //EJEMPLO SI PIDIESE BORRAR UNA FACTURA
-    int num = pedirInt("Introduce el nº de factura que deseas borrar: ");
-    boolean encontrada = false;
-
-    // Recorremos la lista para buscar la factura
-    for (int i = 0; i < facturas.size(); i++) {
-        if (facturas.get(i).getNumero() == num) {
-            facturas.remove(i); // Borra el objeto de la lista automáticamente
-            System.out.println("Factura nº " + num + " eliminada con éxito.");
-            encontrada = true;
-            break; // Salimos del bucle una vez borrada
-        }
-    }
-
-    if (!encontrada) {
-        System.out.println("No se encontró ninguna factura con ese número.");
-    }
-}
-*/
 	private int numero;
     private String cliente;
     private String[] conceptos = new String[10];
