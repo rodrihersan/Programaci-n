@@ -7,173 +7,164 @@ import java.util.ArrayList;
 
 public class Principal {
 	static BufferedReader LEER = new BufferedReader(new InputStreamReader(System.in));
-	static ArrayList<Factura> facturas = new ArrayList<>();
-	static int contadorFacturas = 0;
-	
-	public static String leerLinea() throws IOException {
-			
-			BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-		    String texto;
-	
-		    do {
-		        texto = leer.readLine().trim();
-	
-		        if (texto.length() == 0) {
-		            System.err.println("Debes escribir algo.");
-		            System.out.print("Inténtalo de nuevo: ");
-		            continue;
-		        }
-	
-		        if (!esTextoValido(texto)) {
-		            System.err.println("El nombre solo puede contener letras, sin números ni símbolos ni espacios en blanco.");
-		            System.out.print("Inténtalo de nuevo: ");
-		            continue;
-		        }
-		        break;
-		    } while (true);
-		    return texto;
-		}
-	
-	public static boolean esTextoValido(String texto) {
-	    for (int i = 0; i < texto.length(); i++) {
-	        char c = texto.charAt(i);
-
-	       
-	        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
-	            return false;
-	        }
-	    }
-	    return true;
-	}
 
 	public static void main(String[] args) throws IOException {
+		ArrayList<Factura> facturas = new ArrayList<Factura>();
+
 		boolean salir = false;
-		char opcion;
 
 		do {
-			System.out.println("== MENÚ CONTABLE ==");
-			System.out.println("A. Crear factura");
-			System.out.println("B. Añadir concepto");
-			System.out.println("C. Ver desglose");
-			System.out.println("D. Calcular total");
-			System.out.println("E. Factura más alta");
-			System.out.println("F. Resumen contable");
-			System.out.println("G. Ver todas las facturas");
-			System.out.println("H. Salir");
-			
-			System.out.print("Selecciona una opción: ");
-            opcion = leerLinea().toUpperCase().charAt(0);
+			System.out.println("\n== GESTION FACTURAS ==");
+			System.out.println("1.Registrar factura");
+			System.out.println("2.Añadir concepto");
+			System.out.println("3. Ver desglose");
+			System.out.println("4. Calcular total");
+			System.out.println("5. Factura más alta");
+			System.out.println("6. Resumen Contable");
+			System.out.println("7. Salir");
+			System.out.println("Introduce una opcion: ");
+
+			int opcion = -1;
+			boolean datosOK = false;
+			while (!datosOK) {
+				try {
+					opcion = Integer.parseInt(LEER.readLine());
+				} catch (NumberFormatException | IOException e) {
+					e.printStackTrace();
+				}
+				datosOK = true;
+			}
 
 			switch (opcion) {
-				case 'A':registrarFactura(); break;
-				case 'B':añadirConcepto();break;
-				case 'C':verDesglose();break;
-				case 'D':verTotal();break;
-				case 'E':facturaMasAlta();break;
-				case 'F':resumenContable();break;
-				case 'G':verTodasLasFacturas(); break;
-				case 'H':salir = true;System.out.print("SALIENDO");break;
+			case 1:
+				crearFactura(facturas);
+				break;
+			case 2:
+				añadirConcepto(facturas);
+				break;
+			case 3:
+				verDesglose(facturas);
+				break;
+			case 4:
+				mostrarTotal(facturas);
+				break;
+			case 5:
+				facturaMasAlta(facturas);
+				break;
+			case 6:
+				resumenContable(facturas);
+				break;
+			case 7:
+				System.out.println("Saliendo...");
+				salir = true;
+				break;
+			default:
+				System.out.println("Opcion no valida");
 			}
+
 		} while (!salir);
 	}
-	
-	private static void registrarFactura() {
-		//ponemos <10 porque lo pide el ejercicio
-		if (facturas.size() < 10) {
-			Factura nuevaFactura = new Factura();
-			nuevaFactura.pedirDatos(facturas.size() + 1);
-			facturas.add(nuevaFactura);
-			contadorFacturas++;
-		} else {
-			System.out.println("No caben más facturas.");
-		}
-	}
-	
-	private static void añadirConcepto() {
-		int num = pedirInt("Introduce nº factura: ");
-		for (Factura f : facturas) { 
-			if (f != null && f.getNumero() == num) {
-				f.añadirConcepto();
-				return;
-			}
-		}
-		System.out.println("Factura no encontrada.");
-	}
 
-	private static void verTotal() {
-		int num = pedirInt("Introduce nº factura: ");
-		for (Factura f : facturas) {
-			if (f != null && f.getNumero() == num) {
-				f.mostrarDesglose();
-				return;
-			}
-		}
-		System.out.println("Factura no encontrada.");
-	}
+
+
 	
 
-	private static void verDesglose() {
-		int num = pedirInt("Introduce nº factura: ");
-		for (Factura f : facturas) {
-			if (f != null && f.getNumero() == num) {
-				System.out.println("El desglose de la factura " + num + " es: ");
-				System.out.println( "            - " + f.totalSinIVA() + " € precio base");
-				System.out.println( "            - " + f.totalSinIVA()*0.21 + " € precio del IVA sobre el precio base");
-				System.out.println( "            - " + f.totalConIVA()+ " € precio total");
-				return;
-			}else {
-				System.out.println("Factura no encontrada.");
+
+	private static void crearFactura(ArrayList<Factura> facturas) throws IOException {
+		System.out.println("--AÑADIR FACTURA--");
+		System.out.print("Introduce el nombre del cliente: ");
+		String nombreCliente = LEER.readLine();
+		int id = 1;
+		if (facturas.size() > 0) {
+			id = facturas.getLast().getId() + 1;
+		}
+
+		facturas.add(new Factura(id, nombreCliente));
+		System.out.println("Cliente añadido con id: " + id);
+
+	}
+
+	private static Factura buscarFactura(ArrayList<Factura> facturas) {
+		boolean datosOK = false;
+		int idABuscar = -1;
+		while (!datosOK) {
+			try {
+				System.out.println("Introduzca un ID de factura a buscar: ");
+				idABuscar = Integer.parseInt(LEER.readLine());
+			} catch (NumberFormatException | IOException e) {
+				e.printStackTrace();
 			}
+			datosOK = true;
+		}
+
+		for (Factura factura : facturas) {
+			if (factura.getId() == idABuscar) {
+				return factura;
+			}
+		}
+		return null;
+
+	}
+
+	private static void añadirConcepto(ArrayList<Factura> facturas) {
+		System.out.println("--AÑADIR CONCEPTO DE UNA FACTURA--");
+		Factura factura = buscarFactura(facturas);
+		if (factura != null)
+			factura.añadirConcepto();
+		else
+			System.out.println("No se ha encontrado la factura");
+	}
+
+	private static void verDesglose(ArrayList<Factura> facturas) {
+		System.out.println("--VER DESGLOSE DE  UNA FACTURA--");
+		Factura factura = buscarFactura(facturas);
+		if (factura != null)
+			factura.mostrarDesgloseCompleto();
+		else
+			System.out.println("No se ha encontrado la factura");
+	}
+
+	
+
+	private static void mostrarTotal(ArrayList<Factura> facturas) {
+		System.out.println("--MOSTRAR TOTAL DE UNA FACTURA--");
+		Factura factura = buscarFactura(facturas);
+		if (factura != null)
+			System.out.println(
+					"La factura con ID " + factura.getId() +
+					" tiene como total " + factura.calcularTotalFinal() + "€");
+
+		else
+			System.out.println("No se ha encontrado la factura");
+	}
+	
+	
+	private static void facturaMasAlta(ArrayList<Factura> facturas) {
+		Factura facturaAlta = null;
+		double importeTotalMasAlto = -1;
+		
+		for(Factura fact:facturas) {
+			if(fact.calcularTotalFinal() > importeTotalMasAlto)
+				importeTotalMasAlto =  fact.calcularTotalFinal();
+			    facturaAlta = fact;
+		}
+		
+		if(facturaAlta != null) {
+			System.out.println("--IMPRIMIENDO DATOS DE LA FACTURA MÁS ALTA:--");
+			facturaAlta.mostrarDesgloseCompleto();
+		}else {
+			System.out.println("No ha facturas para detemrinar la más alta");
+		}
+		
+	}
+	
+	private static void resumenContable(ArrayList<Factura> facturas) {
+		System.out.println("--RESUMEN CONTABLE--");
+		for(Factura fact:facturas) {
+			System.out.println("-- CLIENTE: " + fact.getCliente() +
+							" - " + fact.calcularTotalFinal() + "€");
 		}
 	}
 
-	private static void facturaMasAlta() {
-		double max = -1;
-		Factura fMasAlta = null;
-		for (Factura f : facturas) {
-			if (f != null && f.totalConIVA() > max) {
-				max = f.totalConIVA();
-				fMasAlta = f;
-			}
-		}
-		if (fMasAlta != null) {
-			System.out.println("La factura con mayor importe total es de: " + max + "€");
-			fMasAlta.mostrarDesglose();
-		}
-	}
 
-	private static void resumenContable() {
-		double totalEmpresa = 0;
-		for (Factura f : facturas) {
-			if (f != null) {
-				totalEmpresa += f.totalConIVA();
-			}
-		}
-		System.out.println("Suma total de todas las facturas emitidas: " + totalEmpresa + "€");
-	}
-
-	private static int pedirInt(String m) {
-		try {
-			System.out.print(m);
-			return Integer.parseInt(LEER.readLine());
-		} catch (Exception e) {
-			return -1;
-		}
-	}
-	private static void verTodasLasFacturas() {
-	    if (facturas.isEmpty()) {
-	        System.out.println("No hay facturas registradas.");
-	    } else {
-	    	System.out.println(" --------------------------------------");
-	        System.out.println("|   LISTADO DE TODAS LAS FACTURAS     |");
-	        System.out.println(" --------------------------------------");
-	        // Usamos el bucle for-each que ya usas en tus otros métodos
-	        for (Factura f : facturas) {
-	            // f no será null porque el ArrayList no tiene huecos vacíos
-	            f.mostrarDesglose(); 
-	            System.out.println("Total con IVA: " + f.totalConIVA() + "€");
-	            System.out.println("------------------------------------");
-	        }
-	    }
-	}
 }
