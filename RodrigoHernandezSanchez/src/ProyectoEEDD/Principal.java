@@ -88,6 +88,12 @@ public class Principal {
 	    }
 	    
 	    Random rand = new Random();
+	    
+	    if (!rand.nextBoolean()) {
+	        System.out.println("Esta ronda no hubo asesinato.");
+	        return;
+	    }
+	    
 	    Jugador victima = posiblesVictimas.get(rand.nextInt(posiblesVictimas.size()));
 	    victima.morir();
 	    System.out.println("Un tripulante ha sido asesinado...");

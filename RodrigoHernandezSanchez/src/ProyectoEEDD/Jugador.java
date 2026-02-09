@@ -12,19 +12,6 @@ public class Jugador {
 	private boolean asesino;
 	private boolean vivo;
 	
-	private int leerInt(BufferedReader leer) throws IOException {
-		int num;
-		while (true) {
-			try {
-				num = Integer.parseInt(leer.readLine());
-				break;
-			} catch (NumberFormatException e) {
-				System.out.print("ERROR. Introduce un número válido: ");
-			}
-		}
-		return num;
-	}
-	
 	private String leerLinea(BufferedReader leer) throws IOException {
 		String texto;
 		do {
@@ -43,10 +30,6 @@ public class Jugador {
 	public boolean esAsesino() {
 	        return asesino;
 	}
-	
-	public void setAsesino(boolean valor) {
-        asesino = valor;
-    }
 
 	public boolean esVivo() {
         return vivo;
@@ -77,13 +60,14 @@ public class Jugador {
 			idGenerado = rand.nextInt(10) + 1;
 			System.out.println("He generado la id: " + idGenerado + " para el juagador " + nombre);
 		} while (estaRepetido(jugadores, idGenerado));
-		id=idGenerado;
+		this.id=idGenerado;
         vivo = true;
         asesino = false;
         
         if (asesinosActuales < 2) {
             boolean asignar = rand.nextBoolean();
-            if (asignar) asesino = true;
+            if (asignar) 
+            	asesino = true;
         }
 		
 		do {
@@ -105,7 +89,7 @@ public class Jugador {
 				System.out.println("Tripulante");
 			}
 		System.out.print("Estado: ");
-			if (vivo) {
+			if (esVivo()) {
 				System.out.println("Vivo");
 			} else {
 				System.out.println("Muerto");
