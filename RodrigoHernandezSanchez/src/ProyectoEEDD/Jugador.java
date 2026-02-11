@@ -9,6 +9,7 @@ public class Jugador {
 	private String nombre;
 	private String color;
 	private int id;
+	private boolean tripulante;
 	private boolean asesino;
 	private boolean vivo;
 	
@@ -25,6 +26,10 @@ public class Jugador {
 	
 	public int getId() {
 		return id;
+	}
+	
+	public boolean esTripulante() {
+		return tripulante;
 	}
 	
 	public boolean esAsesino() {
@@ -62,6 +67,7 @@ public class Jugador {
 		} while (estaRepetido(jugadores, idGenerado));
 		this.id=idGenerado;
         vivo = true;
+        tripulante = false;
         asesino = false;
         
         if (asesinosActuales < 2) {

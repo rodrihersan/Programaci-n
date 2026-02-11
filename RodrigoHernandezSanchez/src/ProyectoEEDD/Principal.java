@@ -49,9 +49,11 @@ public class Principal {
 			nuevo.pedirDatos(leer, jugadores, asesinosActuales);
 			jugadores.add(nuevo);
 			System.out.println("Jugador registrado correctamente.");
-			
-			if (nuevo.esAsesino()) 
+			if (nuevo.esAsesino()) {
 				System.out.println("Este jugador es asesino");
+			}else {
+				System.out.println("Este jugador es tripulante");
+			}
 	    }
 		
 		//case2
@@ -70,19 +72,19 @@ public class Principal {
 		//case3
 		private static void matar(ArrayList<Jugador> jugadores) {
 		ArrayList<Jugador> asesinos = new ArrayList<>();
-	    ArrayList<Jugador> posiblesVictimas = new ArrayList<>();
+	    ArrayList<Jugador> tripulantes = new ArrayList<>();
 
 	    for (Jugador j : jugadores) {
 	        if (j.esVivo()) {
 	            if (j.esAsesino()) {
 	                asesinos.add(j);
 	            } else {
-	                posiblesVictimas.add(j);
+	            	tripulantes.add(j);
 	            }
 	        }
 	    }
 
-	    if (asesinos.isEmpty() || posiblesVictimas.isEmpty()) {
+	    if (asesinos.isEmpty() || tripulantes.isEmpty()) {
 	        System.out.println("No se puede realizar un asesinato en este momento.");
 	        return;
 	    }
@@ -94,7 +96,7 @@ public class Principal {
 	        return;
 	    }
 	    
-	    Jugador victima = posiblesVictimas.get(rand.nextInt(posiblesVictimas.size()));
+	    Jugador victima = tripulantes.get(rand.nextInt(tripulantes.size()));
 	    victima.morir();
 	    System.out.println("Un tripulante ha sido asesinado...");
 	}
