@@ -43,7 +43,7 @@ public class Principal {
 			switch (opcion) {
 			case 1:añadirContenido();break;
 			case 2:mostrarPorCategoria();break;
-			//case 3:añadirAPlaylist();break;
+			case 3:añadirAPlaylist();break;
 			//case 4:mostrarEstadisticas();break;
 			case 5:salir = true;System.out.println("¡Que disfrutes de tu música!");break;
 			default:System.out.println("Opción no válida.");
@@ -53,8 +53,8 @@ public class Principal {
 	
 	//Case 1
 	public static void añadirContenido() throws IOException {
-		System.out.print(" === Añadir contenido === ");
-		System.out.print("");
+		System.out.println(" === Añadir contenido === ");
+		System.out.println("");
 		System.out.print("¿Cuántos contenidos desea añadir?: ");
 		int cantidad = Integer.parseInt(leer.readLine());
 

@@ -33,6 +33,9 @@ public class Contenido {
 				do {
 					System.out.print("Introduce la duración en minutos (1-180): ");
 					this.minutos = Integer.parseInt(leer.readLine());
+					if(!(minutos < 1 || minutos >180)) {
+						System.out.println("Tiempo incorrecto");
+					}
 					}while (minutos < 1 || minutos > 180);
 
 	                do {
