@@ -41,4 +41,21 @@ public class Futbolista extends Deportista{
 
 		}
 	}
+	
+	
+	public void mostrarDatos() {
+		super.mostrarDatos();
+		System.out.println("Posicion " + this.posicion);
+		System.out.println("Numero de goles " + this.numGoles);
+		System.out.println("Equipo " + this.equipo);
+		
+	}
+	
+	public String getEquipo() {
+	    return equipo;
+	}
+	
+	public int getNumGoles() {
+		return numGoles;
+	}
 }

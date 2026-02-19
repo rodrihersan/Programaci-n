@@ -69,4 +69,10 @@ public class PacienteUrgencias extends Paciente {
 			
 
 	}
+
+	public int getGravedad() {
+		return gravedad;
+	}
+	
+	
 }

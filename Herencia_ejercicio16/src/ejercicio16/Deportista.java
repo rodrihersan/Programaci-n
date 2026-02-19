@@ -3,6 +3,7 @@ package ejercicio16;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 
 public class Deportista extends Persona{
@@ -36,11 +37,15 @@ public class Deportista extends Persona{
 				System.out.println("Has introducido mal algún dato, crack");
 				e.printStackTrace();
 			}
+
 		}
 	}
 	
+
 	protected void mostrarDatos() {
-		System.out.println("deporte: " + this.deporte);
-		System.out.println("categoria: " + this.categoria);
+		super.mostrarDatos();
+		System.out.println("Deporte " + this.deporte);
+		System.out.println("Categoria " + this.categoria);
+		
 	}
 }

@@ -1,14 +1,14 @@
-package ejercicio12;
+package ejercicio13;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Estudiante {
+public class Comercio {
 	private int id;
 	private String nombre;
-	private int edad;
-	private String curso;
+	private String direccion;
+	private String propietario;
 
 	public void pedirDatos(int id) {
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
@@ -17,17 +17,17 @@ public class Estudiante {
 
 		do {
 			try {
-				System.out.print("Introduce el nombre del estudiante: ");
+				System.out.print("Introduce el nombre del establecimiento: ");
 				this.nombre = leer.readLine();
 
-				System.out.print("Introduce la edad: ");
-				this.edad = Integer.parseInt(leer.readLine());
+				System.out.print("Introduce la dirección física: ");
+				this.direccion = leer.readLine();
 
-				System.out.print("Introduce el curso: ");
-				this.curso = leer.readLine();
+				System.out.print("Introduce el nombre del propietario: ");
+				this.propietario = leer.readLine();
 
 				datosOk = true;
-			} catch (NumberFormatException | IOException e) {
+			} catch (IOException e) {
 				System.err.println("Ha habido un error con los datos" + e.getStackTrace());
 			}
 		} while (!datosOk);
@@ -35,17 +35,13 @@ public class Estudiante {
 
 	public void mostrarDatos() {
 		System.out.println("ID: " + this.id);
-		System.out.println("Nombre: " + this.nombre);
-		System.out.println("Edad: " + this.edad);
-		System.out.println("Curso: " + this.curso);
+		System.out.println("Nombre establecimiento: " + this.nombre);
+		System.out.println("Dirección: " + this.direccion);
+		System.out.println("Propietario: " + this.propietario);
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public double calcularMedia() {
-		return 0;
 	}
 
 }

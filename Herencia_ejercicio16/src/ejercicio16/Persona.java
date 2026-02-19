@@ -62,6 +62,7 @@ public class Persona {
 		
 	}
 
+
 	private boolean estaRepetido(ArrayList<Deportista> deportistas, int idGenerado) {
 		for (int i = 0; i < (deportistas.size() - 1); i++) {
 			if (deportistas.get(i).getDNI() == idGenerado) {
@@ -72,18 +73,22 @@ public class Persona {
 		return false;
 
 	}
+	
+	
+	protected void mostrarDatos() {
+		System.out.println("----------------");
+		System.out.println("DNI " + this.DNI);
+		System.out.println("Nombre " + this.nombre);
+		System.out.println("Edad " + this.edad);
+		System.out.println("Fecha Nacimiento " + this.fechaNacimiento);
+		System.out.println("Nacionalidad " + this.nacionalidad);
+		
+	}
+
 
 	public int getDNI() {
 		return DNI;
 	}
 	
-	public void mostrarDatos() {
-		System.out.println("DNI: " + this.DNI);
-		System.out.println("Nombre: " + this.nombre);
-		System.out.println("Edad: " + this.edad);
-		System.out.println("Nacimiento: " + this.fechaNacimiento);
-		System.out.println("Nacionalidad: " + this.nacionalidad);
-
-	}
 	
 }

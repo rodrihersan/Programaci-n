@@ -34,31 +34,43 @@ public class Tenista extends Deportista {
 		}
 	}
 	
-	public void añadirTorneo() {
+	public void añadirTorneo(){
 		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+
 		if(historialTorneos.size() < 10) {
 			boolean datosOK = false;
-			while(!datosOK) {
+			while (!datosOK) {
+
 				try {
-					System.out.println("Introduce el torneo: ");
+
+					System.out.print("Introduce el torneo: ");
 					historialTorneos.add(leer.readLine());
+					System.out.println("Torneo añadido correctamente :)");
 					datosOK = true;
-				}catch(IOException e) {
+				} catch (IOException e) {
 					System.out.println("Has introducido mal algún dato, crack");
 					e.printStackTrace();
 				}
+
 			}
 		}else {
-			System.out.println("No se puede guardar mas torneos por llegar al máximo de 10.");
+			System.out.println("No se puede añadir torneo pq ya hay 10 :(");
 		}
+		
 	}
 	
 	public void mostrarDatos() {
-		System.out.println("posicion en el ranking: " + this.posicionRanking);
-		System.out.println("Historial de torneos: ");
-		for(String torneo : historialTorneos) {
-			System.out.println(torneo + " , ");
+		super.mostrarDatos();
+		System.out.println("Posicion" + this.posicionRanking);
+		System.out.println("historialTorneos");
+		for(String torneo: historialTorneos) {
+			System.out.print(torneo + ", ");
 		}
+		
 	}
 	
+	public int getPosicionRanking() {
+	    return posicionRanking;
+	}
+
 }
