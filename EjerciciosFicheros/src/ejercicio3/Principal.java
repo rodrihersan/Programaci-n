@@ -2,9 +2,11 @@ package ejercicio3;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import ejercicio1.Alumno;
@@ -36,8 +38,8 @@ public class Principal {
 
 			switch (opcion) {
 			case 1:System.out.println("=== AÑADIR UNA RESEÑA NUEVA ===");añadirReseña();break;
-			case 2:System.out.println("=== MOSTRAR LISTADO Y NOTA MEDIA ===");mostrarReseña();break;
-			//case 3:System.out.println("=== EXPORTAR RESEÑAS ===");();break;
+			case 2:System.out.println("=== MOSTRAR LISTADO Y NOTA MEDIA ===");listadoVideojuegos();break;
+			case 3:System.out.println("=== EXPORTAR RESEÑAS ===");exportarReseñas();break;
 			case 4:System.out.println("Salir");salir = true;break;
 			default:System.out.println("Opción no válida");
 			}
@@ -53,65 +55,100 @@ public class Principal {
 
 	}
 	
-	private static void mostrarReseña() {
+	private static void listadoVideojuegos() {
+		ArrayList<Videojuego> videojuegos = new ArrayList<Videojuego>();
+		
 		File f = new File("./reseñas.txt");
 		
-		if (!f.exists()) {
-            System.out.println("No existe el fichero resenas.txt");
-            return;
+		if (f.exists()) {
+			try {
+				FileReader fr = new FileReader(f);
+				BufferedReader br = new BufferedReader(fr);
+				
+				String linea = br.readLine();
+				
+				while(linea != null) {
+					String[] datos = linea.split(";");
+					
+					String nombreVideojuego = datos [1];
+					int nota = Integer.parseInt(datos[2]);
+					
+					boolean enc = false;
+					
+					for(int i=0; i < videojuegos.size() && enc == false; i++) {
+						if(videojuegos.get(i).getNombre().equalsIgnoreCase(nombreVideojuego)) {
+							videojuegos.get(i).añadirNotas(nota);
+							enc = true;
+						}
+					}
+					
+					if(!enc) {
+						Videojuego nuevoVideojuego = new Videojuego(nombreVideojuego);
+						nuevoVideojuego.añadirNotas(nota);
+						videojuegos.add(nuevoVideojuego);
+					}
+					
+					linea = br.readLine();
+				}
+				
+				System.out.println("Listado de videojuegos y su nota media");
+				for(Videojuego vid:videojuegos) {
+					System.out.println(vid.getNombre()+ ": " + vid.calcularMedia());
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }else {
+        	System.out.println("No existe el fichero resenas.txt");
         }
-		FileReader fr = new FileReader(f);
-		BufferedReader br = new BufferedReader(fr);
-		Reseña r = new Reseña();
-		
-		String linea = br.readLine();
-		while (linea != null) {
-			String[] v;
-			ArrayList<String> juegos      = new ArrayList<String>();
-	        ArrayList<Integer> sumas      = new ArrayList<Integer>();
-	        ArrayList<Integer> contadores = new ArrayList<Integer>();
-
-	        String linea = br.readLine();
-	        while (linea != null) {
-	            String videojuego = br.readLine().split(": ")[1];
-	            int nota          = Integer.parseInt(br.readLine().split(": ")[1]);
-	            br.readLine();
-	            int pos = -1;
-	            for (int i = 0; i < juegos.size(); i++) {
-	                if (juegos.get(i).equalsIgnoreCase(videojuego)) {
-	                    pos = i;
-	                    break;
-	                }
-	            }
-
-	            if (pos == -1) {
-	                juegos.add(videojuego);
-	                sumas.add(nota);
-	                contadores.add(1);
-	            } else {
-	                sumas.set(pos, sumas.get(pos) + nota);
-	                contadores.set(pos, contadores.get(pos) + 1);
-	            }
-
-	            linea = br.readLine();
-	        }
-
-	        br.close();
-	        fr.close();
-
-	        if (juegos.isEmpty()) {
-	            System.out.println("No hay reseñas en el fichero.");
-	            return;
-	        }
-
-	        System.out.println("Videojuego                     Nota Media");
-	        System.out.println("------------------------------------------");
-	        for (int i = 0; i < juegos.size(); i++) {
-	            double media = (double) sumas.get(i) / contadores.get(i);
-	            System.out.println(juegos.get(i) + " -> " + media);
-	        }
-	    }
-		
-		}
 	}
-
+	
+	private static void exportarReseñas() {
+		BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+		
+		File f = new File("./reseñas.txt");
+		if (f.exists()) {
+			try {
+				FileReader fr = new FileReader(f);
+				BufferedReader br = new BufferedReader(fr);
+				
+	        	System.out.println("Introduce nombre del jugador");
+	        	String nombreJugador = leer.readLine();
+	        	File reseñasJugador = new File("./reseñas_" + nombreJugador+ ".txt");
+	        	
+	        	String linea = br.readLine();
+	        	
+	        	boolean enc = false;
+	        	
+	        	while(linea != null) {
+	        		String[] datos = linea.split(";");
+	        		
+	        		String nombreJugadorReseña = datos[0];
+	        		
+	        		if(nombreJugador.equalsIgnoreCase(nombreJugadorReseña)) {
+	        			enc = true;
+	        			FileWriter fw = new FileWriter(ficheroReseñasJugador, true);
+	        			PrintWriter pw = new PrintWriter(fw);
+	        			
+	        			pw.println(linea);
+	        			pw.flush();
+	        			pw.close();
+	        			fr.close();
+	        		}
+	        		linea = br.readLine();
+	        	}
+	        	
+	        	br.close();
+	        	fr.close();
+	        	
+	        	if(enc) {
+	        		System.out.println("Se ha creado el archivo");
+	        	}else {
+	        		System.out.println("No se ha encontrado el jugador");
+	        	}
+	        }catch(IOException e) {
+	        	System.err.println("Error al leer el archivo");
+	       }
+		}	
+	}
+}

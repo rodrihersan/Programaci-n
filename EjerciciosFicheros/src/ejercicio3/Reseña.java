@@ -50,19 +50,19 @@ public class Reseña {
 	public void escribirFichero() {
 		try {
 			File f = new File("./reseñas.txt");
-			FileWriter fw = new FileWriter(f, true);
+			FileWriter fw = new FileWriter(f, true); 
+			//true para que no se sobreescriban los datos. 
+			//false (o se puede no poner nada, lo interpreta como false) para que si se sobreescriban los datos introducidos
 			PrintWriter pw = new PrintWriter(fw);
-			pw.println("Nombre: " + nombreJugador);
-			pw.println("Nombre videojuego: " + nombreVideojuego);
-			pw.println("Nota videojuego: " + notaVideojuego);
-			pw.println("Pequeño comentario: " + comentario);
+			pw.println(nombreJugador + ";" + nombreVideojuego + ";" + notaVideojuego 
+					+ ";" + comentario);
 			
 			pw.flush();
             pw.close();
             fw.close();
 		} catch (IOException e) {
 		System.err.println("ERROR");
-	}
+		}
 	}
 	
 	public String getNombreJugador()    { 
