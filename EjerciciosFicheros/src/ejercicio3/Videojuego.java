@@ -6,9 +6,9 @@ public class Videojuego {
 	private String nombre;
 	private ArrayList<Integer> notas;
 	
-	public Videojuego() {
-		this.nombre = nombre;
-		String
+	public Videojuego(String nombre) {
+	    this.nombre = nombre;
+	    notas = new ArrayList<Integer>();
 	}
 	
 	public void añadirNotas(int nota) {

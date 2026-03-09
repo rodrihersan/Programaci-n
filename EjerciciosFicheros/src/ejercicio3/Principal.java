@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -127,7 +128,7 @@ public class Principal {
 	        		
 	        		if(nombreJugador.equalsIgnoreCase(nombreJugadorReseña)) {
 	        			enc = true;
-	        			FileWriter fw = new FileWriter(ficheroReseñasJugador, true);
+	        			FileWriter fw = new FileWriter(reseñasJugador, true);
 	        			PrintWriter pw = new PrintWriter(fw);
 	        			
 	        			pw.println(linea);
