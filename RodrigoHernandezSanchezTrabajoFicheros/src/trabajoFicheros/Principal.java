@@ -37,7 +37,7 @@ public class Principal {
             switch (opcion) {
                 case 1:System.out.println("=== AÑADIR ACTIVIDAD ===");añadirActividad();break;
                 case 2:System.out.println("=== BUSCAR POR SECCIÓN ===");buscarPorSeccion();break;
-                case 3:System.out.println("=== REALIZAR INSCRIPCIÓN ===");realizarInscripcion();break;
+                //case 3:System.out.println("=== REALIZAR INSCRIPCIÓN ===");realizarInscripcion();break;
                 case 4:System.out.println("=== EXPORTAR PARTICIPANTES ===");exportarParticipantes();break;
                 case 5:System.out.println("Salir");salir = true;break;
                 default:System.out.println("Opción no válida");
@@ -108,97 +108,6 @@ public class Principal {
     }
 
     //Case3
-    private static void realizarInscripcion() throws IOException {
-        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
-
-        File fActividades = new File("./actividades.txt");
-        if (!fActividades.exists()) {
-            System.out.println("No existe el fichero actividades.txt");
-            return;
-        }
-
-        System.out.print("Introduce el id de la actividad a la que te quieres inscribir: ");
-        int idActividad = Integer.parseInt(leer.readLine());
-
-        FileReader fr = new FileReader(fActividades);
-        BufferedReader br = new BufferedReader(fr);
-
-        Actividad actividadElegida = null;
-        String linea = br.readLine();
-
-        while (linea != null) {
-            Actividad a = new Actividad();
-            a.leerActividad(linea);
-            if (a.getId() == idActividad) {
-                actividadElegida = a;
-            }
-            linea = br.readLine();
-        }
-
-        br.close();
-        fr.close();
-
-        if (actividadElegida == null) {
-            System.out.println("No existe ninguna actividad con ese id.");
-            return;
-        }
-
-        if (actividadElegida.getPlazasDisponibles() <= 0) {
-            System.out.println("No quedan plazas disponibles para esa actividad.");
-            return;
-        }
-
-        System.out.print("Introduce la edad (8-17): ");
-        int edad = Integer.parseInt(leer.readLine());
-
-        if (actividadElegida.getSeccion().equalsIgnoreCase("Chiqui") && (edad < 8 || edad > 11)) {
-            System.out.println("No tienes la edad adecuada para inscribirte en esta actividad.");
-            return;
-        }
-        if (actividadElegida.getSeccion().equalsIgnoreCase("Preas") && (edad < 12 || edad > 14)) {
-            System.out.println("No tienes la edad adecuada para inscribirte en esta actividad.");
-            return;
-        }
-        if (actividadElegida.getSeccion().equalsIgnoreCase("Centro") && (edad < 15 || edad > 17)) {
-        	System.out.println("No tienes la edad adecuada para inscribirte en esta actividad.");
-        	return;
-        }
-
-        Inscripcion inscripcion = new Inscripcion();
-        inscripcion.pedirDatos(edad, idActividad);
-        inscripcion.guardarInscripcion();
-
-        File fTemporal = new File("./actividades_tmp.txt");
-        FileReader fr2 = new FileReader(fActividades);
-        BufferedReader br2 = new BufferedReader(fr2);
-        FileWriter fw = new FileWriter(fTemporal, false);
-        PrintWriter pw = new PrintWriter(fw);
-
-        linea = br2.readLine();
-        while (linea != null) {
-            Actividad a = new Actividad();
-            a.leerActividad(linea);
-            if (a.getId() == idActividad) {
-                a.setPlazasDisponibles(a.getPlazasDisponibles() - 1);
-            }
-            pw.println(a.getId() + ";" + a.getNombre() + ";" + a.getSeccion() + ";" + a.getPlazasDisponibles() + ";" + a.getPrecio());
-            linea = br2.readLine();
-        }
-
-        br2.close();
-        fr2.close();
-        pw.flush();
-        pw.close();
-        fw.close();
-
-        if (fActividades.delete()) {
-            fTemporal.renameTo(fActividades);
-        } else {
-            System.out.println("Error al actualizar el fichero de actividades.");
-        }
-
-        System.out.println("Inscripción realizada correctamente.");
-    }
 
     //case 4
     private static void exportarParticipantes() throws IOException {
