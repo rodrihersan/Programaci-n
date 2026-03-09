@@ -37,7 +37,7 @@ public class Principal {
             switch (opcion) {
                 case 1:System.out.println("=== AÑADIR ACTIVIDAD ===");añadirActividad();break;
                 case 2:System.out.println("=== BUSCAR POR SECCIÓN ===");buscarPorSeccion();break;
-                //case 3:System.out.println("=== REALIZAR INSCRIPCIÓN ===");realizarInscripcion();break;
+                case 3:System.out.println("=== REALIZAR INSCRIPCIÓN ===");realizarInscripcion();break;
                 case 4:System.out.println("=== EXPORTAR PARTICIPANTES ===");exportarParticipantes();break;
                 case 5:System.out.println("Salir");salir = true;break;
                 default:System.out.println("Opción no válida");
@@ -78,7 +78,7 @@ public class Principal {
 
         String linea = br.readLine();
         double precioTotal = 0;
-        boolean hayActividades = false;
+        boolean enc  = false;
 
         System.out.println("SECCIÓN: " + seccion);
 
@@ -87,7 +87,7 @@ public class Principal {
             actividad.leerActividad(linea);
 
             if (actividad.getSeccion().equalsIgnoreCase(seccion)) {
-                hayActividades = true;
+            	enc  = true;
                 System.out.println("ACTIVIDAD: " + actividad.getNombre());
                 System.out.println("Precio: " + actividad.getPrecio() + "€");
                 System.out.println("Plazas disponibles: " + actividad.getPlazasDisponibles());
@@ -100,15 +100,56 @@ public class Principal {
         br.close();
         fr.close();
 
-        if (!hayActividades) {
+        if (!enc ) {
             System.out.println("No hay actividades para esa sección.");
         } else {
             System.out.println("Total: " + precioTotal + "€");
         }
     }
 
-    //Case3
+    //Case3 (incompleto)
+    private static void realizarInscripcion() throws IOException {
+        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 
+        File fActividades = new File("./actividades.txt");
+        if (!fActividades.exists()) {
+            System.out.println("No existe el fichero actividades.txt");
+            return;
+        }
+
+        System.out.print("Introduce el id de la actividad a la que te quieres inscribir: ");
+        int idActividad = Integer.parseInt(leer.readLine());
+
+        FileReader fr = new FileReader(fActividades);
+        BufferedReader br = new BufferedReader(fr);
+
+        boolean enc = false;
+        Actividad actividadElegida = new Actividad();
+        String linea = br.readLine();
+
+        while (linea != null) {
+            Actividad a = new Actividad();
+            a.leerActividad(linea);
+            if (a.getId() == idActividad) {
+                actividadElegida = a;
+                enc = true;
+            }
+            linea = br.readLine();
+        }
+
+        br.close();
+        fr.close();
+
+        if (!enc) {
+            System.out.println("No existe ninguna actividad con ese id.");
+            return;
+        }
+
+        if (actividadElegida.getPlazasDisponibles() <= 0) {
+            System.out.println("No quedan plazas disponibles para esa actividad.");
+            return;
+        }
+    }
     //case 4
     private static void exportarParticipantes() throws IOException {
         BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
@@ -125,7 +166,8 @@ public class Principal {
         FileReader fr = new FileReader(fActividades);
         BufferedReader br = new BufferedReader(fr);
 
-        Actividad actividadElegida = null;
+        boolean enc = false;
+        Actividad actividadElegida = new Actividad();
         String linea = br.readLine();
 
         while (linea != null) {
@@ -133,6 +175,7 @@ public class Principal {
             a.leerActividad(linea);
             if (a.getId() == idActividad) {
                 actividadElegida = a;
+                enc = true;
             }
             linea = br.readLine();
         }
@@ -140,11 +183,48 @@ public class Principal {
         br.close();
         fr.close();
 
-        if (actividadElegida == null) {
+        if (!enc) {
             System.out.println("No existe ninguna actividad con ese id.");
             return;
         }
 
-        System.out.println("Actividad encontrada: " + actividadElegida.getNombre());
+        File fInscripciones = new File("./inscripciones.txt");
+        if (!fInscripciones.exists()) {
+            System.out.println("No hay inscripciones registradas.");
+            return;
+        }
+
+        FileReader fr2 = new FileReader(fInscripciones);
+        BufferedReader br2 = new BufferedReader(fr2);
+
+        File fExportar = new File("./" + actividadElegida.getNombre() + ".txt");
+        enc = false;
+
+        String linea2 = br2.readLine();
+        while (linea2 != null) {
+            String[] datos = linea2.split(";");
+            int idActividadInscripcion = Integer.parseInt(datos[3]);
+
+            if (idActividadInscripcion == idActividad) {
+                enc = true;
+                FileWriter fw = new FileWriter(fExportar, true);
+                PrintWriter pw = new PrintWriter(fw);
+                pw.println(datos[0] + ";" + datos[2]);
+                pw.flush();
+                pw.close();
+                fw.close();
+            }
+
+            linea2 = br2.readLine();
+        }
+
+        br2.close();
+        fr2.close();
+
+        if (enc) {
+            System.out.println("Inscripciones exportadas en: " + actividadElegida.getNombre() + ".txt");
+        } else {
+            System.out.println("No hay participantes inscritos en esa actividad.");
+        }
     }
 }
