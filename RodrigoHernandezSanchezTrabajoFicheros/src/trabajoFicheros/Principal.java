@@ -107,7 +107,7 @@ public class Principal {
         }
     }
 
-    //Case3 (incompleto)
+    //Case3 (sin terminar)
     private static void realizarInscripcion() throws IOException {
         BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 

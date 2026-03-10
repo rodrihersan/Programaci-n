@@ -50,12 +50,4 @@ public class Inscripcion {
             System.err.println("Error al escribir en el fichero de inscripciones.");
         }
     }
-    
-    public void setEdad(int edad) { 
-    	this.edad = edad; 
-    }
-
-    public void setIdActividad(int idActividad) { 
-    	this.idActividad = idActividad; 
-    }
 }

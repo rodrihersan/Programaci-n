@@ -134,8 +134,5 @@ public class Actividad {
     	return precio; 
     }
     
-    public void setPlazasDisponibles(int plazasDisponibles) {
-        this.plazasDisponibles = plazasDisponibles;
-    }
 }
 
