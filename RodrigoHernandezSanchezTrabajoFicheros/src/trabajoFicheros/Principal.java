@@ -112,27 +112,37 @@ public class Principal {
         BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
 
         File fActividades = new File("./actividades.txt");
+        File fActividadesTemporales = new File("actividades_temp.txt");
         if (!fActividades.exists()) {
             System.out.println("No existe el fichero actividades.txt");
             return;
         }
 
         System.out.print("Introduce el id de la actividad a la que te quieres inscribir: ");
-        int idActividad = Integer.parseInt(leer.readLine());
+        int idActividadBuscar = Integer.parseInt(leer.readLine());
+        int edad = 0;
 
         FileReader fr = new FileReader(fActividades);
         BufferedReader br = new BufferedReader(fr);
 
-        boolean enc = false;
-        Actividad actividadElegida = new Actividad();
         String linea = br.readLine();
-
         while (linea != null) {
             Actividad a = new Actividad();
             a.leerActividad(linea);
-            if (a.getId() == idActividad) {
-                actividadElegida = a;
-                enc = true;
+            
+            if (a.getId() == idActividadBuscar) {
+                if(a.getPlazasDisponibles() > 0) {
+                	System.out.println("Introduce la edad: ");
+                	edad = Integer.parseInt(leer.readLine());
+                	
+                	if(a.getSeccion().equalsIgnoreCase("Chiqui") && (edad < 8 || edad > 11) ||
+                			a.getSeccion().equalsIgnoreCase("Preas") && (edad < 12 || edad > 13) || 
+                			a.getSeccion().equalsIgnoreCase("Centro") && (edad < 14 || edad > 16)) {
+                		
+                    	System.out.println("No tienes la edad adecuada para inscribirte en esta actividad.");
+                		
+                	}
+                }
             }
             linea = br.readLine();
         }

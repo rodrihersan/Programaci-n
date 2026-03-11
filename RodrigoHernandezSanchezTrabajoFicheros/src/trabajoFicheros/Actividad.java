@@ -91,7 +91,7 @@ public class Actividad {
         return false;
     }
 
-    public void escribirActividad() {
+    public void escribirActividad(	) {
         try {
             File f = new File("./actividades.txt");
             FileWriter fw = new FileWriter(f, true);
