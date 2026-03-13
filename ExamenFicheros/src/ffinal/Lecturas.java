@@ -1,4 +1,4 @@
-package examen;
+package ffinal;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -7,12 +7,12 @@ public class Lecturas {
 
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    // ─────────────────────────────────────────────
-    // LECTURA BÁSICA
-    // ─────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // LECTURA BÃ�SICA
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     /**
-     * Lee una línea de texto. Repite si está vacía.
+     * Lee una lÃ­nea de texto. Repite si estÃ¡ vacÃ­a.
      */
     public static String leerString(String mensaje) {
         String valor = "";
@@ -21,7 +21,7 @@ public class Lecturas {
             try {
                 valor = br.readLine().trim();
                 if (valor.isEmpty()) {
-                    System.out.println("ERROR: El campo no puede estar vacío.");
+                    System.out.println("ERROR: El campo no puede estar vacÃ­o.");
                 }
             } catch (IOException e) {
                 System.out.println("ERROR: Problema al leer la entrada.");
@@ -31,7 +31,7 @@ public class Lecturas {
     }
 
     /**
-     * Lee un número entero. Repite si no es un número válido.
+     * Lee un nÃºmero entero. Repite si no es un nÃºmero vÃ¡lido.
      */
     public static int leerEntero(String mensaje) {
         int valor = 0;
@@ -44,14 +44,14 @@ public class Lecturas {
             } catch (IOException e) {
                 System.out.println("ERROR: Problema al leer la entrada.");
             } catch (NumberFormatException e) {
-                System.out.println("ERROR: Introduce un número entero válido.");
+                System.out.println("ERROR: Introduce un nÃºmero entero vÃ¡lido.");
             }
         }
         return valor;
     }
 
     /**
-     * Lee un número decimal. Repite si no es un número válido.
+     * Lee un nÃºmero decimal. Repite si no es un nÃºmero vÃ¡lido.
      */
     public static double leerDouble(String mensaje) {
         double valor = 0;
@@ -64,18 +64,18 @@ public class Lecturas {
             } catch (IOException e) {
                 System.out.println("ERROR: Problema al leer la entrada.");
             } catch (NumberFormatException e) {
-                System.out.println("ERROR: Introduce un número decimal válido.");
+                System.out.println("ERROR: Introduce un nÃºmero decimal vÃ¡lido.");
             }
         }
         return valor;
     }
 
-    // ─────────────────────────────────────────────
-    // LECTURA CON VALIDACIÓN DE RANGO
-    // ─────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // LECTURA CON VALIDACIÃ“N DE RANGO
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     /**
-     * Lee un entero dentro de un rango [min, max]. Repite si está fuera de rango.
+     * Lee un entero dentro de un rango [min, max]. Repite si estÃ¡ fuera de rango.
      */
     public static int leerEnteroEnRango(String mensaje, int min, int max) {
         int valor;
@@ -89,7 +89,7 @@ public class Lecturas {
     }
 
     /**
-     * Lee un double mayor que un mínimo (exclusivo). Repite si no cumple.
+     * Lee un double mayor que un mÃ­nimo (exclusivo). Repite si no cumple.
      */
     public static double leerDoubleMayorQue(String mensaje, double minExclusivo) {
         double valor;
@@ -103,7 +103,7 @@ public class Lecturas {
     }
 
     /**
-     * Lee un entero mayor que un mínimo (exclusivo). Repite si no cumple.
+     * Lee un entero mayor que un mÃ­nimo (exclusivo). Repite si no cumple.
      */
     public static int leerEnteroMayorQue(String mensaje, int minExclusivo) {
         int valor;
@@ -116,16 +116,16 @@ public class Lecturas {
         return valor;
     }
 
-    // ─────────────────────────────────────────────
-    // LECTURA CON VALIDACIÓN DE OPCIONES
-    // ─────────────────────────────────────────────
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // LECTURA CON VALIDACIÃ“N DE OPCIONES
+    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
     /**
-     * Lee un String que debe coincidir con una de las opciones permitidas (sin distinguir mayúsculas).
-     * Repite si no es una opción válida.
+     * Lee un String que debe coincidir con una de las opciones permitidas (sin distinguir mayÃºsculas).
+     * Repite si no es una opciÃ³n vÃ¡lida.
      *
      * Ejemplo de uso:
-     *   String modulo = Lecturas.leerOpcion("Módulo: ", new String[]{"Programacion", "BBDD", "LLMM", "Sistemas"});
+     *   String modulo = Lecturas.leerOpcion("MÃ³dulo: ", new String[]{"Programacion", "BBDD", "LLMM", "Sistemas"});
      */
     public static String leerOpcion(String mensaje, String[] opciones) {
         String valor = "";
@@ -140,7 +140,7 @@ public class Lecturas {
                 }
             }
             if (!valido) {
-                System.out.print("ERROR: Opción no válida. Las opciones son: ");
+                System.out.print("ERROR: OpciÃ³n no vÃ¡lida. Las opciones son: ");
                 for (int i = 0; i < opciones.length; i++) {
                     System.out.print(opciones[i]);
                     if (i < opciones.length - 1) System.out.print(", ");

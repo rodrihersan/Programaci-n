@@ -1,4 +1,4 @@
-package examen;
+package ffinal;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -136,7 +136,6 @@ public class Principal {
 
 	    } while (!enc);
 
-	    // Obtener votos actuales del candidato
 	    FileReader fr = new FileReader(FICHERO_CANDIDATOS);
 	    BufferedReader br = new BufferedReader(fr);
 	    Candidato candidatoActual = new Candidato();
@@ -154,7 +153,6 @@ public class Principal {
 	    br.close();
 	    fr.close();
 
-	    // Pedir nuevos votos validando que no sean menores que los actuales
 	    int nuevosVotos;
 	    do {
 	        nuevosVotos = Lecturas.leerEntero("Introduce los nuevos votos: ");
@@ -163,7 +161,6 @@ public class Principal {
 	        }
 	    } while (nuevosVotos < candidatoActual.getVotos());
 
-	    // Fichero temporal
 	    File fTemporal = new File("candidatos_tmp.txt");
 	    FileReader fr2 = new FileReader(FICHERO_CANDIDATOS);
 	    BufferedReader br2 = new BufferedReader(fr2);
