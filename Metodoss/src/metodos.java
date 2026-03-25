@@ -69,12 +69,11 @@ public class metodos {
 		    for (int i = 0; i < texto.length(); i++) {
 		        char c = texto.charAt(i);
 
-		        // comprobamos si no es letra may�scula ni min�scula
 		        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
-		            return false; // encontramos un car�cter no permitido
+		            return false;
 		        }
 		    }
-		    return true; // todos los caracteres son letras
+		    return true; 
 		}
 		
 	//----------	
