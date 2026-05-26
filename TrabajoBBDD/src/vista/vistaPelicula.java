@@ -1,0 +1,56 @@
+package vista;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import controlador.PeliculaController;
+import modelo.PeliculaDTO;
+import Utils.Lecturas;
+
+
+
+public class vistaPelicula {
+	
+	public void menuCategoria() throws IOException {
+		boolean salir = false;
+		do {
+			System.out.println("=== CATEGORIAS ===");
+			System.out.println("1. Listar películas");
+			System.out.println("2. Añadir película");
+			System.out.println("3. Editar película");
+			System.out.println("4. Borrar película");
+			System.out.println("0. Volver");
+			int opcion = Lecturas.leerEnteroEnRango("Introduce una opción: ", 0, 4);
+			switch (opcion) {
+			case 1:System.out.println("= Listar películas =");verTodasLasCategorias();break;
+			case 2:System.out.println("= Añadir película =");insertar();break;
+			case 3:System.out.println("= Editar película =");break;
+			case 4:System.out.println("= Borrar película =");break;
+			case 0:salir = true;break;
+			}
+		} while (!salir);
+	}
+	
+	public void verTodasLasCategorias() {
+		PeliculaController peliculaControlador = new PeliculaController();
+		ArrayList<PeliculaDTO> listaPeliculas = peliculaControlador.obtenerTodasLasCategorias();
+		
+		System.out.println("CATEGORIAS");
+		System.out.println("--------------");
+		for (PeliculaDTO pelicula : listaPeliculas) {
+			System.out.println(pelicula.getPelicula()+ " - " + pelicula.getNombrePelicula());
+		}
+	}
+	
+	public void insertar() {
+		String nombre = Lecturas.leerString("Insertar nombre categoria: ");
+		PeliculaDTO pel = new PeliculaDTO();
+		PeliculaController categoriaControlador = new PeliculaController();
+		
+		if(categoriaControlador.insertar(pel))
+			System.out.println("Insertaod correctamente");
+		else
+			System.out.println("Error al insertar");
+		
+		
+	}
+}
