@@ -5,13 +5,13 @@ import modelo.PeliculaDAO;
 import modelo.PeliculaDTO;
 
 public class PeliculaController {
-	public ArrayList<PeliculaDTO> obtenerTodasLasCategorias(){
-		PeliculaDAO PeliculDAO = new PeliculaDAO();
-		return PeliculDAO.obtenerTodosLasCategorias();
-	}
-	
-	public boolean insertar(PeliculaDTO pelicula) {
-		PeliculaDAO PeliculDAO = new PeliculaDAO();
-		return PeliculaDAO.insertarCategoria(pelicula);
-	}
+    public ArrayList<PeliculaDTO> obtenerTodasLasPeliculas() {
+        PeliculaDAO peliculaDAO = new PeliculaDAO();
+        return peliculaDAO.obtenerTodasLasPeliculas();
+    }
+
+    public boolean insertar(PeliculaDTO pelicula) {
+        PeliculaDAO peliculaDAO = new PeliculaDAO();
+        return peliculaDAO.insertarPelicula(pelicula); 	
+    }
 }
