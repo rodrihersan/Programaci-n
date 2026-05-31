@@ -5,24 +5,22 @@ import modelo.ClienteDAO;
 import modelo.ClienteDTO;
 
 public class ClienteController {
+	
+	ClienteDAO clienteDAO = new ClienteDAO();
 
-    public ArrayList<ClienteDTO> obtenerTodosLosClientes() {
-        ClienteDAO clienteDAO = new ClienteDAO();
+	public ArrayList<ClienteDTO> obtenerClientes() {
         return clienteDAO.obtenerTodosLosClientes();
     }
 
-    public boolean insertar(ClienteDTO cliente) {
-        ClienteDAO clienteDAO = new ClienteDAO();
-        return clienteDAO.insertarCliente(cliente);
+    public boolean insertar(ClienteDTO clienteInsertar) {
+        return clienteDAO.insertarCliente(clienteInsertar);
     }
 
     public boolean editar(ClienteDTO cliente) {
-        ClienteDAO clienteDAO = new ClienteDAO();
         return clienteDAO.editarCliente(cliente);
     }
 
     public boolean borrar(int id) {
-        ClienteDAO clienteDAO = new ClienteDAO();
         return clienteDAO.borrarCliente(id);
     }
 }

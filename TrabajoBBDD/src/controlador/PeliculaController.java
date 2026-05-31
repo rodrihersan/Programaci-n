@@ -14,4 +14,14 @@ public class PeliculaController {
         PeliculaDAO peliculaDAO = new PeliculaDAO();
         return peliculaDAO.insertarPelicula(pelicula); 	
     }
+    
+    public boolean editar(PeliculaDTO pelicula) {
+        PeliculaDAO peliculaDAO = new PeliculaDAO();
+        return peliculaDAO.editarPelicula(pelicula);
+    }
+
+    public boolean borrar(int id) {
+        PeliculaDAO peliculaDAO = new PeliculaDAO();
+        return peliculaDAO.borrarPelicula(id);
+    }
 }

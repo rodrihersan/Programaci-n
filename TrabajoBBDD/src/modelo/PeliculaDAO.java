@@ -5,19 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import Utils.ConexionBBDD;
+import utils.ConexionBBDD;
 
 public class PeliculaDAO {
-
 	public ArrayList<PeliculaDTO> obtenerTodasLasPeliculas() {
-
-		ArrayList<PeliculaDTO> listaPeliculas = new ArrayList<PeliculaDTO>();
-
-		Connection conexion = ConexionBBDD.getConexion();
-
+		
+		ArrayList<PeliculaDTO> listaPeliculas  = new ArrayList<>();
+		
 		try {
-			String sql = "SELECT * FROM peliculas";
+			Connection conexion = ConexionBBDD.getConexion();
+			String sql = "SELECT id, titulo, genero, duracion, anio FROM peliculas";
+			
 			PreparedStatement ps = conexion.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -35,6 +33,7 @@ public class PeliculaDAO {
 			return listaPeliculas;
 
 		} catch (SQLException e) {
+			System.out.println("Error en la BBDD: " + e.getMessage());
 			e.printStackTrace();
 			return listaPeliculas;
 		}
@@ -44,34 +43,64 @@ public class PeliculaDAO {
 	public boolean insertarPelicula(PeliculaDTO pelicula) {
 		try {
 			Connection conexion = ConexionBBDD.getConexion();
-			// Preparamos la consulta
-			String sql = "INSERT INTO pelicula (titulo, genero, duracion, anio) VALUES (?, ?, ?, ?)";
-			PreparedStatement ps = conexion.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-
-			// Rellenamos los parámetros en orden
-			ps.setString(1, pelicula.getNombrePelicula());
+			String sql = "INSERT INTO peliculas (titulo, genero, duracion, anio) VALUES (?, ?, ?, ?)";
+			
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ps.setString(1, pelicula.getTitulo());
 	        ps.setString(2, pelicula.getGenero());
 	        ps.setInt(3, pelicula.getDuracion());
 	        ps.setInt(4, pelicula.getAnio());
-
-
 			int filasAfectadas = ps.executeUpdate();
 			
-			// Obtenemos el id generado
-			ResultSet keys = ps.getGeneratedKeys();
-			int idGenerado = -1;
-			System.out.println(keys.next());
-			idGenerado = keys.getInt(1);
-	
-			System.out.println("EL ID GENERADO ES " + idGenerado);
-			
 			conexion.close();
-			// Si se insertó al menos una fila, devolvemos true
 			return filasAfectadas > 0;
+			
 		} catch (SQLException e) {
 			System.out.println("Error en la BBDD: " + e.getMessage());
 			return false;
 		}
 	}
-
+	
+	public boolean editarPelicula(PeliculaDTO pelicula) {
+        try {
+            Connection conexion = ConexionBBDD.getConexion();
+            String sql = "UPDATE peliculas SET titulo = ?, genero = ?, duracion = ?, anio = ? WHERE id = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, pelicula.getTitulo());
+            ps.setString(2, pelicula.getGenero());
+            ps.setInt(3, pelicula.getDuracion());
+            ps.setInt(4, pelicula.getAnio());
+            ps.setInt(5, pelicula.getId());
+            int filas = ps.executeUpdate();
+            conexion.close();
+            if (filas == 0) {
+            	System.out.println("No se encontró ninguna película con id " + pelicula.getId());
+            }
+            
+            return filas > 0;
+        } catch (SQLException e) {
+            System.out.println("Error en la BBDD: " + e.getMessage());
+            return false;
+        }
+    }
+	
+	public boolean borrarPelicula(int id) {
+        try {
+            Connection conexion = ConexionBBDD.getConexion();
+            
+            String sql = "DELETE FROM peliculas WHERE id = ?";
+            
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            int filasAfectadas = ps.executeUpdate();
+            conexion.close();
+            if (filasAfectadas == 0) System.out.println("No se encontró ninguna película con id " + id);
+            
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            System.out.println("Error en la BBDD: " + e.getMessage());
+            return false;
+        }
+    }
 }

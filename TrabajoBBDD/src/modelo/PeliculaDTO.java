@@ -24,10 +24,6 @@ public class PeliculaDTO {
 		this.anio = anio;
 	}
 	
-	public int getPelicula() {
-		return id;
-	}
-	
 	public int getId() {
 		return id;
 	}
@@ -36,7 +32,7 @@ public class PeliculaDTO {
 		this.id = id;
 	}
 
-	public String getNombrePelicula() {
+	public String getTitulo() {
 		return titulo;
 	}
 
