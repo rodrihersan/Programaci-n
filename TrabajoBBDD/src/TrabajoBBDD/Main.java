@@ -1,7 +1,7 @@
 package TrabajoBBDD;
 
 import java.io.IOException;
-import Utils.Lecturas;
+import utils.Lecturas;
 import vista.VistaPelicula;
 import vista.VistaCliente;
 import vista.VistaSesion;

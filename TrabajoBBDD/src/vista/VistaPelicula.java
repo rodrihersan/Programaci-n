@@ -3,7 +3,7 @@ package vista;
 import java.util.ArrayList;
 import controlador.PeliculaController;
 import modelo.PeliculaDTO;
-import Utils.Lecturas;
+import utils.Lecturas;
 
 public class VistaPelicula {
 	PeliculaController peliculaController = new PeliculaController();
@@ -13,7 +13,7 @@ public class VistaPelicula {
 		do {
 			System.out.println("=== Gestion Peliculas ===");
 			System.out.println("1. Listar peliculas");
-			System.out.println("2. Añadir peliculas");
+			System.out.println("2. Aï¿½adir peliculas");
 			System.out.println("3. Editar peliculas");
 			System.out.println("4. Borrar peliculas");
 			System.out.println("0. Volver");
@@ -22,7 +22,7 @@ public class VistaPelicula {
 			switch (opcion) {
 			
 			case 1:System.out.println("Listar peliculas");verTodasLasPeliculas();break;			
-			case 2:System.out.println("Añadir peliculas");insertar();break;
+			case 2:System.out.println("Aï¿½adir peliculas");insertar();break;
 			case 3:System.out.println("Editar peliculas");editar();break;
 			case 4:System.out.println("Borrar peliculas");borrar();break;
 			case 0:salir = true;break;
@@ -54,9 +54,9 @@ public class VistaPelicula {
 		PeliculaController peliculaControlador = new PeliculaController();
 		
 		if (peliculaControlador.insertar(nueva))
-            System.out.println("pelicula añadida correctamente.");
+            System.out.println("pelicula aï¿½adida correctamente.");
         else
-            System.out.println("Error al añadir la peliculas.");
+            System.out.println("Error al aï¿½adir la peliculas.");
     }
 	
 	public void editar() {
@@ -64,7 +64,7 @@ public class VistaPelicula {
 		
 		PeliculaDTO actual = peliculaController.obtenerPorId(id);
 	    if (actual == null) {
-	        System.out.println("No se encontró ninguna película con id " + id);
+	        System.out.println("No se encontrï¿½ ninguna pelï¿½cula con id " + id);
 	        return;
 	    }
 	    

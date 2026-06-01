@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import Utils.ConexionBBDD;
+import utils.ConexionBBDD;
 
 public class SesionDAO {
 	public ArrayList<SesionDTO> obtenerTodasLasSesiones() {

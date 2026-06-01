@@ -3,7 +3,7 @@ package vista;
 import java.util.ArrayList;
 import controlador.ClienteController;
 import modelo.ClienteDTO;
-import Utils.Lecturas;
+import utils.Lecturas;
 
 public class VistaCliente {
 
@@ -22,7 +22,7 @@ public class VistaCliente {
         do {
             System.out.println("=== Gestion Cliente ===");
             System.out.println("1. Listar clientes");
-            System.out.println("2. Añadir cliente");
+            System.out.println("2. Aï¿½adir cliente");
             System.out.println("3. Editar cliente");
             System.out.println("4. Borrar cliente");
             System.out.println("0. Volver");
@@ -30,7 +30,7 @@ public class VistaCliente {
             
             switch (opcion) {
                 case 1:System.out.println("Ver Clientes");verTodosLosClientes(); break;
-                case 2:System.out.println("Añadir Clientes");insertar(); break;
+                case 2:System.out.println("Aï¿½adir Clientes");insertar(); break;
                 case 3:System.out.println("Editar Clientes");editar(); break;
                 case 4:System.out.println("Borrar Clientes");borrar(); break;
                 case 0:salir = true; break;
@@ -76,9 +76,9 @@ public class VistaCliente {
 
         //llamamos controlador que este llama a insertar
         if (clienteControlador.insertar(cliente))
-            System.out.println("Cliente añadido correctamente");
+            System.out.println("Cliente aï¿½adido correctamente");
         else
-            System.out.println("Error al añadir el cliente");
+            System.out.println("Error al aï¿½adir el cliente");
     }
 
     public void editar() {
@@ -88,11 +88,15 @@ public class VistaCliente {
         String email = Lecturas.leerString("Nuevo email: ");
         String telefono = Lecturas.leerString("Nuevo telefono: ");
 
-        if (!validarEmail(email)) 
+        if (!validarEmail(email)) {
+        	System.out.println("Email no valido. Operacion cancelada.");
         	return;
+        }
         
-        if (!validarTelefono(telefono)) 
+        if (!validarTelefono(telefono)) {
+        	System.out.println("Telefono no valido, solo digitos. Operacion cancelada.");
         	return;
+        }
 
         ClienteDTO editado = new ClienteDTO(id, nombre, email, telefono);
 
