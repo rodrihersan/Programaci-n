@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import utils.ConexionBBDD;
+import Utils.ConexionBBDD;
 
 public class PeliculaDAO {
 	public ArrayList<PeliculaDTO> obtenerTodasLasPeliculas() {
@@ -33,7 +33,7 @@ public class PeliculaDAO {
 			return listaPeliculas;
 
 		} catch (SQLException e) {
-			System.out.println("Error en la BBDD: " + e.getMessage());
+			System.err.println("Error en la BBDD: " + e.getMessage());
 			e.printStackTrace();
 			return listaPeliculas;
 		}
@@ -56,7 +56,7 @@ public class PeliculaDAO {
 			return filasAfectadas > 0;
 			
 		} catch (SQLException e) {
-			System.out.println("Error en la BBDD: " + e.getMessage());
+			System.err.println("Error en la BBDD: " + e.getMessage());
 			return false;
 		}
 	}
@@ -74,15 +74,39 @@ public class PeliculaDAO {
             int filas = ps.executeUpdate();
             conexion.close();
             if (filas == 0) {
-            	System.out.println("No se encontró ninguna película con id " + pelicula.getId());
+            	System.err.println("No se encontró ninguna película con id " + pelicula.getId());
             }
             
             return filas > 0;
         } catch (SQLException e) {
-            System.out.println("Error en la BBDD: " + e.getMessage());
+            System.err.println("Error en la BBDD: " + e.getMessage());
             return false;
         }
     }
+	
+	public PeliculaDTO obtenerPorId(int id) {
+	    try {
+	        Connection conexion = ConexionBBDD.getConexion();
+	        String sql = "SELECT id, titulo, genero, duracion, anio FROM peliculas WHERE id = ?";
+	        PreparedStatement ps = conexion.prepareStatement(sql);
+	        ps.setInt(1, id);
+	        ResultSet rs = ps.executeQuery();
+	        if(rs.next()) {
+	        	int idP = rs.getInt("id");
+	        	String titulo = rs.getString("titulo");
+	        	String genero = rs.getString("genero");
+	            int duracion = rs.getInt("duracion");
+	            int anio = rs.getInt("anio");
+	            PeliculaDTO pelicula = new PeliculaDTO(idP, titulo, genero, duracion, anio);
+	            conexion.close();
+	            return pelicula;
+	        }
+	        conexion.close();
+	    } catch (SQLException e) {
+	    	System.err.println("Error en la BBDD: " + e.getMessage());
+	    }
+	    return null;
+	   }
 	
 	public boolean borrarPelicula(int id) {
         try {
@@ -95,11 +119,11 @@ public class PeliculaDAO {
             
             int filasAfectadas = ps.executeUpdate();
             conexion.close();
-            if (filasAfectadas == 0) System.out.println("No se encontró ninguna película con id " + id);
+            if (filasAfectadas == 0) System.err.println("No se encontró ninguna película con id " + id);
             
             return filasAfectadas > 0;
         } catch (SQLException e) {
-            System.out.println("Error en la BBDD: " + e.getMessage());
+            System.err.println("Error en la BBDD: " + e.getMessage());
             return false;
         }
     }

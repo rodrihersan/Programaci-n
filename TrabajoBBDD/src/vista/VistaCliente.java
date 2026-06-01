@@ -3,7 +3,7 @@ package vista;
 import java.util.ArrayList;
 import controlador.ClienteController;
 import modelo.ClienteDTO;
-import utils.Lecturas;
+import Utils.Lecturas;
 
 public class VistaCliente {
 
@@ -22,7 +22,7 @@ public class VistaCliente {
         do {
             System.out.println("=== Gestion Cliente ===");
             System.out.println("1. Listar clientes");
-            System.out.println("2. AÃ±adir cliente");
+            System.out.println("2. Añadir cliente");
             System.out.println("3. Editar cliente");
             System.out.println("4. Borrar cliente");
             System.out.println("0. Volver");
@@ -30,7 +30,7 @@ public class VistaCliente {
             
             switch (opcion) {
                 case 1:System.out.println("Ver Clientes");verTodosLosClientes(); break;
-                case 2:System.out.println("Insertar Clientes");insertar(); break;
+                case 2:System.out.println("Añadir Clientes");insertar(); break;
                 case 3:System.out.println("Editar Clientes");editar(); break;
                 case 4:System.out.println("Borrar Clientes");borrar(); break;
                 case 0:salir = true; break;
@@ -39,13 +39,16 @@ public class VistaCliente {
     }
 
     public void verTodosLosClientes() {
+    	//recorremos todo ela rray para ver los datos
         ArrayList<ClienteDTO> listaClientes = clienteControlador.obtenerClientes();
         
         System.out.println("Clientes");
         System.out.println("--------------");
         
+        //si esta vacio mensaje
         if (listaClientes.isEmpty()) {
             System.out.println("No hay clientes registrados.");
+        //si no esta vacio, bucle que recorra la lista y da atributos
         } else {
             for (ClienteDTO c : listaClientes) {
                 System.out.println(c.getId() + " - " + c.getNombre() + " - " + c.getEmail() + " - " + c.getTelefono());
@@ -54,6 +57,7 @@ public class VistaCliente {
     }
 
     public void insertar() {
+    	//pedimos datos
         String nombre   = Lecturas.leerString("Nombre: ");
         String email    = Lecturas.leerString("Email: ");
         String telefono = Lecturas.leerString("Telefono: ");
@@ -67,13 +71,14 @@ public class VistaCliente {
             System.out.println("Telefono no valido, solo digitos. Operacion cancelada.");
             return;
         }
-
+        //como es un nuevo cliente lo guardamos
         ClienteDTO cliente  = new ClienteDTO(nombre, email, telefono);
 
+        //llamamos controlador que este llama a insertar
         if (clienteControlador.insertar(cliente))
-            System.out.println("Cliente aÃ±adido correctamente");
+            System.out.println("Cliente añadido correctamente");
         else
-            System.out.println("Error al aÃ±adir el cliente");
+            System.out.println("Error al añadir el cliente");
     }
 
     public void editar() {
