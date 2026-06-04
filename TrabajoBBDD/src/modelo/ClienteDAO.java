@@ -97,6 +97,10 @@ public class ClienteDAO {
             
             conexion.close();
             
+            if (filasAfectadas == 0) {
+                System.err.println("No se encontró ninguna película con id " + id);
+            }
+            
             return filasAfectadas > 0;
             
         } catch (SQLException e) {

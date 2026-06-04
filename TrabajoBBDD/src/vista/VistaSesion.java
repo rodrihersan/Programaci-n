@@ -14,7 +14,7 @@ public class VistaSesion {
 			System.out.println("=== Gestion Sesiones ===");
 			System.out.println("1. Listar Sesiones");
 			System.out.println("2. Borrar Sesiones");
-			System.out.println("3. a�adir una Sesion ");
+			System.out.println("3. Anadir una Sesion ");
 			System.out.println("0. Salir al menu principal");
 			int opcion = Lecturas.leerEnteroEnRango("Introduce una opcion: ", 0, 3);
 			
@@ -22,7 +22,7 @@ public class VistaSesion {
 			
 			case 1:System.out.println("Mostras Sesiones");mostrarSesiones();break;
 			case 2:System.out.println("Borrar Sesiones");borrarSesion();break;
-			case 3:System.out.println("A�adir Sesiones");programarSesion();break;
+			case 3:System.out.println("Anadir Sesiones");programarSesion();break;
 			case 0:salir = true;break;
 			}
 		} while (!salir);

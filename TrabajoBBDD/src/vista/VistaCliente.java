@@ -22,7 +22,7 @@ public class VistaCliente {
         do {
             System.out.println("=== Gestion Cliente ===");
             System.out.println("1. Listar clientes");
-            System.out.println("2. A�adir cliente");
+            System.out.println("2. Anadir cliente");
             System.out.println("3. Editar cliente");
             System.out.println("4. Borrar cliente");
             System.out.println("0. Volver");
@@ -30,7 +30,7 @@ public class VistaCliente {
             
             switch (opcion) {
                 case 1:System.out.println("Ver Clientes");verTodosLosClientes(); break;
-                case 2:System.out.println("A�adir Clientes");insertar(); break;
+                case 2:System.out.println("Anadir Clientes");insertar(); break;
                 case 3:System.out.println("Editar Clientes");editar(); break;
                 case 4:System.out.println("Borrar Clientes");borrar(); break;
                 case 0:salir = true; break;
@@ -76,9 +76,9 @@ public class VistaCliente {
 
         //llamamos controlador que este llama a insertar
         if (clienteControlador.insertar(cliente))
-            System.out.println("Cliente a�adido correctamente");
+            System.out.println("Cliente anadido correctamente");
         else
-            System.out.println("Error al a�adir el cliente");
+            System.out.println("Error al anadir el cliente");
     }
 
     public void editar() {
